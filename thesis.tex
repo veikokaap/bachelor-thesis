@@ -1,0 +1,182 @@
+\documentclass{style/bachelor-thesis}
+\input{macros/macros}
+
+
+%%% BEGIN DOCUMENT
+\begin{document}
+
+% BEGIN TITLE PAGE
+\thispagestyle{empty}
+\begin{center}
+
+\large
+UNIVERSITY OF TARTU\\[2mm]
+Institute of Computer Science\\
+Computer Science Curriculum\\[2mm]
+
+%\vspace*{\stretch{5}}
+\vspace{25mm}
+
+\Large Veiko Kääp
+
+\vspace{4mm}
+
+\huge \articleName
+
+%\vspace*{\stretch{7}}
+\vspace{20mm}
+
+\Large Bachelor's Thesis (9 ECTS)
+
+\end{center}
+
+\vspace{2mm}
+
+\begin{flushright}
+ {
+ \setlength{\extrarowheight}{5pt}
+ \begin{tabular}{r l} 
+  \sffamily Supervisor: & \sffamily Vesal Vojdani, PhD \\
+  \sffamily Supervisor: & \sffamily Märt Bakhoff, Msc
+ \end{tabular}
+ }
+\end{flushright}
+
+%\vspace*{\stretch{3}}
+\vspace{10mm}
+
+%{\noindent Author: .................................................................................... ``.....'' ..........\hskip16pt 2048}
+\vspace{2mm}
+
+
+%{\noindent Supervisor: ............................................................................... ``.....'' ..........\hskip16pt 2048}
+
+\vspace{2mm}
+
+%{\noindent Supervisor: ............................................................................... ``.....'' ..........\hskip16pt 2048}
+
+\vspace{8mm}
+
+
+\vfill
+\centerline{Tartu 2018}
+
+% END TITLE PAGE
+
+% Remember to remove this from the final thesis version
+\pagebreak
+\listoftodos[Todos]
+% END OF TODO PAGE 
+
+% COMPULSORY INFO PAGE
+\pagebreak
+
+\selectlanguage{english}
+\noindent\textbf{\large \articleName}
+\vspace*{3ex}
+\begin{flushleft}
+  \textbf{Abstract:} %todo{Write short summary}
+\end{flushleft}
+
+
+\vspace*{3ex}
+\begin{flushleft}
+  \textbf{Keywords:} Java Virtual Machine, Debugger
+\end{flushleft}
+\vspace*{3ex}
+
+\noindent\textbf{CERCS:} P170??, Computer science
+\selectlanguage{estonian}
+
+\vspace*{5ex}
+\noindent\textbf{\large \articleNameEE}
+\vspace*{3ex}
+
+\begin{flushleft}
+  \textbf{Lühikokkuvõte:} %todo{Write short summary} 
+\end{flushleft}
+\vspace*{3ex}
+
+\begin{flushleft}
+  \textbf{Võtmesõnad:} Java Virtuaalmasin, Silur 
+\end{flushleft}
+\vspace*{3ex}
+
+\noindent\textbf{CERCS:} P170, Arvutiteadus
+
+\newpage
+
+\selectlanguage{english}
+
+
+
+\tableofcontents
+
+\pagebreak
+
+
+%Introduction
+\section{Introduction}
+\subfile{introduction/introduction.tex}
+
+\pagebreak
+
+%todo
+%\section{Java Debugger Wire Protocol}
+%\label{sec:jdwp}
+%\subfile{jdwp/jdwp.tex}
+
+\clearpage
+\section{Conclusion} 
+
+\subfile{conclusion/conclusion.tex}
+
+\newpage
+
+\bibliography{thesis}{}
+\bibliographystyle{plain}
+
+\newpage
+
+\appendix
+\section*{Appendecies}
+\addcontentsline{toc}{section}{Appendecies}
+% So that appendecies would be named by letters
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\subfile{appendix/appendix.tex}
+\pagebreak
+\section*{\small Non-exclusive licence to reproduce thesis and make thesis public}
+
+
+I, Veiko Kääp (date of birth: 4th of January 1996),
+
+\begin{tabbing}
+\= Xiii\=\kill
+\>1. \> herewith grant the University of Tartu a free permit (non-exclusive licence) to:\\\\ 
+
+\>1.1\> 
+\begin{minipage}[t]{14.2cm}
+reproduce, for the purpose of preservation and making available to the public, including for addition to the DSpace digital archives until expiry of the term of validity of the copyright, and
+\end{minipage}
+\\\\
+\>1.2 
+\begin{minipage}[t]{14.2cm}
+make available to the public via the web environment of the University of Tartu, including via the DSpace digital archives until expiry of the term of validity of the copyright,\\ 
+
+\articleName\\   
+
+supervised by Vesal Vodjani and Märt Bakhoff
+
+\end{minipage}\\\\ 
+\>2. \>I am aware of the fact that the author retains these rights.\\\\
+\>3. \>
+\begin{minipage}[t]{14.2cm}
+I certify that granting the non-exclusive licence does not infringe the intellectual property rights or rights arising from the Personal Data Protection Act. 
+\end{minipage}\\
+\end{tabbing}
+
+\noindent
+Tartu, \today
+
+
+\end{document}
