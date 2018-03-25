@@ -1,0 +1,16 @@
+%!TEX root = ../thesis.tex
+\documentclass[..thesis.tex]{subfiles}
+
+\begin{document}
+
+\toguide{What is JPDA? What does it consist of?}
+
+"JPDA (Java Platform Debugger Architecture) is a multi-tiered debugging architecture that allows tools developers to easily create debugger applications which run portably across platforms, virtual machine (VM) implementations and JDK versions."\cite{oracle_jpda_spec} \todo{Write in your own words}
+
+Its three layers are JVM TI (Java Virtual Machine Tool Interface), JDWP (Java Debug Wire Protocol) and JDI (Java Debug Interface). 
+A developer who intends to use JPDA can hook into JPDA on any of these layers. \cite{oracle_jpda_spec} \todo{Use different cites for each paragraph}
+
+Since JDI is the highest level and provides the best ease of use, then Oracle encourages developers to use that.\cite{oracle_jpda_spec}
+It is also possible to use JDWP or JVM TI, but these can require a lot more work depending on the task. 
+
+\end{document}

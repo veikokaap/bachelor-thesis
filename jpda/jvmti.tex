@@ -1,0 +1,16 @@
+%!TEX root = ../thesis.tex
+\documentclass[..thesis.tex]{subfiles}
+
+\begin{document}
+
+JVM TI is a native interface implemented by the Virtual Machine.
+It is responsible for the services a VM must provide for debugging.
+That includes different requests for information about the debuggee, but also actions the VM should take and notifications sent to the debugger.\cite{oracle_jpda_jvmti}
+
+JVM TI is the lowest level layer in the JPDA. 
+It provides the most direct access to the JVM, but that comes at the cost of portability - due to being a native interface, it requires to be built separately for each platform.
+
+It also requires the developer to have access to the JVM startup arguments in order to attach the agent. It isn't possible to attach the agent remotely or after the JVM startup.
+
+
+\end{document}
