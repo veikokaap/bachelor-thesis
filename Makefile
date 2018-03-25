@@ -13,17 +13,16 @@ LOG=pdf-latex.log
 RM = rm -rf
 PDFLATEX = pdflatex
 PDFLATEX-ARGS = -synctex=1 -shell-escape -interaction=nonstopmode --output-directory=${TARGET-FOLDER}
-PDF-READER = xdg-open
 
 
 
 # Builds the whole thing
 
-all: pdf open
+all: pdf
 
 # Does not do bib
 
-raw: raw-pdf open
+raw: raw-pdf
 
 # Create the PDF
 
@@ -38,13 +37,11 @@ bib: folders
 	$(PDFLATEX) $(PDFLATEX-ARGS)  $(SOURCE-FILE)
 	TEXMFOUTPUT="${TARGET-FOLDER}:" BIBINPUTS="${BIB}:" bibtex $(TARGET-FOLDER)/$(OUTPUT)
 	$(PDFLATEX) $(PDFLATEX-ARGS)  $(SOURCE-FILE)
+
 # Clean up
+
 clean:
 	$(RM) $(TARGET-FOLDER)
-
-# Open the PDF created
-open:
-	$(PDF-READER) $(TARGET-FOLDER)/$(OUTPUT-PDF)
 
 folders:
 	mkdir -p $(TARGET-FOLDER)
