@@ -176,3 +176,6 @@
 % smart spaces
 \usepackage{xspace}
 
+% lists and stuff
+\usepackage{enumitem}
+
