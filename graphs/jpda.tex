@@ -1,0 +1,46 @@
+%!TEX root = ../thesis.tex
+\documentclass[..thesis.tex]{subfiles}
+
+\begin{document}
+
+\tikzstyle{block} = [draw, fill=gray!3, rectangle, minimum height=2em, minimum width=12em]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+
+  \begin{tikzpicture}[auto, node distance=2cm,>=latex']
+    % Styles
+    \tikzset{blue dotted/.style={draw=blue!50!white, line width=1pt,
+                               dash pattern=on 1pt off 4pt on 6pt off 4pt,
+                                inner sep=4mm, rectangle, rounded corners}};
+
+
+                                % JVM 
+    \node [block] (app) {Running application};
+    \node [block, below of=app, node distance=3.5em] (jvmti) {JVM Tooling Interface};
+    \node [block, below of=jvmti, node distance=3.5em] (jdwp-agent) {JDWP native agent};
+
+    \draw [dashed] (app) -- node {} (jvmti);
+    \draw [-] (jvmti) -- node {} (jdwp-agent);
+
+    \node (debuggee box) [blue dotted, fit = (app) (jvmti) (jdwp-agent)] {};
+    \node at (debuggee box.north) [above, inner sep=3mm] {\textbf{Java Virtual Machine}};
+
+    % Debugger
+    \node [block, right of=jdwp-agent, node distance=21em] (jdi) {Java Debug Interface};
+    \node [block, above of=jdi, node distance=7em] (debugger) {Debugger application};
+
+    \draw [-] (jdi) -- node {} (debugger);
+
+    \node (debugger box) [blue dotted, fit = (jdi) (debugger)] {};
+    \node at (debugger box.north) [above, inner sep=3mm] {\textbf{Debugger}};
+
+    % JDWP
+    \draw [<->] (jdwp-agent) -- node {JDWP} (jdi);
+
+    %\node [block, left of=debugee-box, node distance=5cm] (bla) {Debugee}
+
+  \end{tikzpicture}
+  \captionof{figure}{Graphical representation of the Java Platform Debugger Architecture.}
+
+\end{document}

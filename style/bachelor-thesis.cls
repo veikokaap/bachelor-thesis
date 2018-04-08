@@ -166,9 +166,9 @@
 
 
 % tikz libraries
-
-\usetikzlibrary{3d}
-\usetikzlibrary{patterns}
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows, chains, scopes, positioning, arrows, fit}
+\usepackage{caption}
 
 % table
 \usepackage{multirow}
