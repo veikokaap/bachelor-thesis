@@ -8,28 +8,10 @@ That means ensuring that the program operates correctly with the given input, pr
 The development of the software will begin with the description of the problem followed by construction of an algorithm designed to solve that problem. 
 Then the algorithm is implemented in a programming language.
 
-Usually the compiler detects basic syntatic and semantic problems in the program and ensures that the program is at least startable. 
+Usually the compiler detects basic syntactic and semantic problems in the program and ensures that the program is at least able to start. 
 However, the compiler won't detect if there are any logic problems in the code which can cause output to be unexpected or the program to halt execution early with an error message.
 
 That means the developer needs to ensure that the algorithm chosen for the problem behaves correctly in all corner cases and that the algorithm was properly translated to the programming language. 
 For this, tests are written which will run the program or small isolated parts of the program and ensure that the problem terminates correctly and gives the expected output.
-
-When any of these tests have an unexpected outcome or a problem occurrs in a production envrionment, then the developer will need to investigate and understand which part of the program lead to the issue or caused the error.
-The developer has multiple options on how to determine the faulty part:
-\begin{itemize}
-  \item Read and examine the code in order to find the problematic code
-  \item Change code in random places which seem like they might be connected to the issue and see if the outcome becomes correct
-  \item Insert logging statements to print out intermediate values in the code and after rerunning the program see if and where the values differ from the expected.
-  \item Use a debugger to interactively control and monitor the program execution.
-\end{itemize}
-
-In most cases, using a interactive debugger is the easiest and most efficent choice. 
-A debugger is a software which allows the developer to monitor and control the execution of the program.
-It gives the developer the functionality to suspend or resume the execution at any time and to evaluate and inspect the program state while the program is running. 
-
-Most debuggers are made to work best when they have access to the source code of the program. 
-Then the debugger can provide the developer the functionality to change variable values in the program, but to also set breakpoints to certain lines in the code. 
-Breakpoints are markers which tell the debugger when to suspend the execution of the program and when to give the control of the excecution to the developer.
-
 
 \end{document}

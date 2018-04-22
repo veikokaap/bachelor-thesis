@@ -1,0 +1,28 @@
+%!TEX root = ../thesis.tex
+\documentclass[..thesis.tex]{subfiles}
+
+\begin{document}
+
+When any of these tests have an unexpected outcome or a problem occurs in a production environment, then the developer will need to investigate and understand which part of the program lead to the issue or caused the error.
+The developer has multiple options on how to determine the faulty part:
+\begin{itemize}
+  \item Read and examine the code in order to find the problematic code
+  \item Change code in random places which seem like they might be connected to the issue and see if the outcome becomes correct
+  \item Insert logging statements to print out intermediate values in the code and after rerunning the program see if and where the values differ from the expected.
+  \item Use a debugger to interactively control and monitor the program execution.
+\end{itemize}
+
+In most cases, using an interactive debugger is the easiest and most efficient choice. 
+A debugger is a software which allows the developer to monitor and control the execution of the program.
+It gives the developer the functionality to suspend or resume the execution at any time and to evaluate and inspect the program state while the program is running. 
+
+Most debuggers are made to work best when they have access to the source code of the program. 
+Then the debugger can provide the developer the functionality to change variable values in the program, but to also set breakpoints to certain lines in the code. 
+Breakpoints are markers which tell the debugger when to suspend the execution of the program and to give the control of the execution to the developer.
+
+The main benefit of using a debugger instead of simply adding logging statements is the ability to start debugging immediately without the need for knowledge of where the fault might be.
+With logging statements, the developer might add them to one location, but then discover that the problem is in another location. 
+Then it is necessary to stop the program, add new logging to the other location and rerun the program.
+With an interactive debugger, it is possible to immediately go to the other location and start debugging there.
+
+\end{document}
