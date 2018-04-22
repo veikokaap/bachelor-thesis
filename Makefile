@@ -18,7 +18,7 @@ PDFLATEX-ARGS = -synctex=1 -shell-escape -interaction=nonstopmode --output-direc
 
 # Builds the whole thing
 
-all: pdf
+all: pdf copy-release
 
 # Does not do bib
 
@@ -45,3 +45,6 @@ clean:
 
 folders:
 	mkdir -p $(TARGET-FOLDER)
+
+copy-release: 
+	cp $(TARGET-FOLDER)/$(OUTPUT-PDF) $(TARGET-FOLDER)/$(OUTPUT)-release.pdf
