@@ -3,7 +3,7 @@
 
 \begin{document}
 
-The JDWP start up consists of connection establishement and the following handshake between the virtual machine (VM) and the debugger.
+The JDWP start up consists of connection establishment and the following handshake between the virtual machine (VM) and the debugger.
 The handshake consists of debugger sending 14 bytes of ASCII characters of the string "JDWP-Handshake" to the VM and the VM replying with the same 14 bytes.\cite{oracle_jdwp_spec}
 
 The JDWP is packet based and is not stateful. There exists two types of packets: command packets and reply packets.
