@@ -4,9 +4,9 @@
 \begin{document}
 
 The JDWP start up consists of connection establishment and the following handshake between the virtual machine (VM) and the debugger.
-eThe handshake consists of debugger sending 14 bytes of ASCII characters of the string "JDWP-Handshake" to the VM and the VM replying with the same 14 bytes.\cite{oracle_jdwp_spec}
+Handshake consists of debugger sending 14 bytes of ASCII characters of the string "JDWP-Handshake" to the VM and the VM replying with the same 14 bytes.\cite{oracle_jdwp_spec}
 
-The JDWP is packet based and is not stateful. There exists two types of packets: command packets and reply packets.
+JDWP is packet based and is not stateful. There exists two types of packets: command packets and reply packets.
 The JDWP is asynchronous so it is possible to send multiple command packets before a reply is received for the first command.
 
 Both the target VM and the debugger can send command packets. For the debugger, they're used to "request information from the target VM, or to control program execution."
@@ -14,9 +14,7 @@ The target VM sends them to "notify the debugger of some event in the target VM 
 
 A reply packet is sent as a response to the command packet and provides information whether the command was a success or failure. The reply packet can also return a value or data requested by the command packet. In the current state of the protocol, events that are sent from the target VM do not require a response or a reply packet from the debugger.\cite{oracle_jdwp_spec}
 
-The headers of command and reply packets are equal in size and always 11 bytes. 
-
-The layout of the command packet is the following:
+Headers of command and reply packets are equal in size and always 11 bytes. The layout of the command packet is the following:
 \begin{itemize}[nosep]
   \item Header
     \begin{itemize}[nosep]
