@@ -3,6 +3,21 @@
 
 \begin{document}
 
+This thesis focuses on how to use multiple debuggers in parallel on the JVM, but that kind of functionality can be useful for any programming language. 
+Most modern software design patterns preach modularity as a simple way how to manage big software projects.
+So instead of having one huge project built into an application, often an application is built from many smaller projects.
+Depending on the IDE a developer is using, its interactive debugger might have a limitation of only allowing the developer to debug a single project at a time.
 
+For example, all IDEs available from the software company JetBrains have the feature of creating a separate window for each project.
+And its interactive debugger can only operate on projects in the current window.
+There are workaround for this problem - a developer can import external projects as a submodule to an existing project window, but that requires time to set up properly.
+
+Another use case is when one project is developed in one IDE and the other project uses a different IDE.
+Such a situation might happen due to legacy reasons - project layout and features are bind to a particular IDE - or because both IDEs have a different feature set which might benefit the projects differently.
+There are also differences in functionality between different debuggers. 
+
+Some debuggers have a completely different use case from other debuggers which makes it useful to use them in parallel.
+For example, one debugger could be for monitoring the running threads and the other for looking into memory consumption.
+In such a case there is no workaround for using them at once other than allowing multiple debuggers to debug an application at the same time.
 
 \end{document}
