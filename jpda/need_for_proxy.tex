@@ -1,0 +1,26 @@
+%!TEX root = ../thesis.tex
+\documentclass[..thesis.tex]{subfiles}
+
+\begin{document}
+
+This section will describe the need for a proxy server for JDWP.
+More general use cases for using multiple debuggers in parallel were described in section \ref{sec:debugging_usecases}, but this section will focus in more detail on specific use cases unique for JPDA.
+
+The JVM has a support for tools called Java agents which use application programming interfaces (APIs) provided by the JVM to instrument programs running on the JVM.
+These APIs give JVM tool creators extensive functionality for creating simple to use agents which can be used for solving many problems.
+Agents can be used for monitoring performance, exceptions, logging or even to add previously unavailable features to the JVM, like reloading code at runtime.
+
+However, since the instrumentation APIs provide so many possibilities, it is also quite easy to misuse the functionality and create hard to understand cases where the program doesn't function like expected.
+For such cases, interactively debugging the agent and the program running at the same time is one of the few possible ways to locate the cause of the problem.
+It doesn't however make much sense to have the running application and the agent in the same IDE workspace since their functionality and purpose are completely different.
+In such case, being able to program both projects in different workspaces but to debug both of them is crucial.
+
+Similarly, any application framework which allows the creation of plugins can benefit from being able to attach multiple debuggers.
+For example, most IDEs are designed so that the all the languages and special features are not part of the core code base, but instead available as plugins. 
+Such approach has many benefits including making the main code base smaller and easier to maintain.
+It also creates clear separation between what the IDE should do and what each plugin does and makes it easier to later add new functionality by implementing a new plugin.
+Since separation is so important in such cases, then it makes sense to develop all plugins in separate workspaces.
+There again debugging them at once makes sense since at runtime the IDE with all the plugins functions as a single application creating a need for attaching multiple debuggers to the JVM.
+
+
+\end{document}
