@@ -1,0 +1,38 @@
+%!TEX root = ../thesis.tex
+\documentclass[..thesis.tex]{subfiles}
+
+\begin{document}
+
+Since there is no support from the JVM to connect multiple debuggers simultaneously, then writing a custom solution is required. 
+JPDA is multi-tiered, as described in section \ref{sec:jpda}, then this thesis will consider all three layers of the architecture when solving the problem.
+For each layer, there is a different approach on how to solve the limitation.
+
+Starting with the JVMTI, at first this might seem as the most promising layer for allowing multiple debuggers since it is in this layer where connection with the debugger is done.
+Working in this layer however would mean creating a new native agent which would duplicate all the debugging functionality of the built-in JDWP back-end agent, but at the same time add the support for multiple debuggers.
+Simply taking the existing native agent and modifying it isn't an option, since this agent might differ between different JVM vendors and might change with each JVM release.
+Also, since it's a native agent, then it would need to be built for each supported platform making its distribution and usage more difficult.
+
+Another possibility is to use JDI which currently only supports being the front-end of JDWP and so acts as the debugger.
+That means all of its logic is written for connecting and communicating with the JVM, but it has no code for being the back-end for another debugger.
+Also, since it's meant to be the most accessible layer of JPDA, then it hides quite a lot of the connection details and packets to make the usage simpler.
+While it is possible to access and use the implementation code which is aware of all these details, it's made a lot more difficult by the introduction of the Module system in Java 9.
+
+The last layer to look at for the solution is the transport protocol JDWP which is used for communication between the front-end and back-end of the JPDA.
+This layer doesn't have any code to reuse since it's simply a description of how the other layers of JPDA should communicate, but it is the simplest place where to solve the problem for numerous reasons.
+First of all, a solution in transport layer wouldn't set any restrictions on how the front-end and back-end of the debugger platform are implemented.
+The other layers can remain completely oblivious to the fact that there is something going on between them.
+This would solve the problem of having to support multiple JVM vendors and platforms or letting a developer use a front-end other than JDI.
+Secondly, JDWP is backwards compatible, so that the solution created will keep working even with newer versions of JVM.
+
+The idea is to create a proxy server for the JDWP which would connect to the JVM as a debugger and then let multiple debuggers connect to it.
+It would exchange packets with the JVM and debuggers and would pass them on and manipulate them as needed in order to maintain all the features of the debuggers as specified by the JPDA.
+What makes this solution simpler from the other two mentioned above is the fact that most packets don't require any special handling and can be passed directly from the sender to the receiver.
+With other layers, it is still required to implement the handling of such packets, but with JDWP proxy server it is possible to simply pass these packets on to where they were sent with no extra logic needed.
+Thanks to that, most of the development time for the proxy server can be focused on the packets and actions which do need special behaviour.
+
+\subfile{./graphs/jpda-proxy.tex}
+
+The above figure illustrates how the JPDA should function when the JDWP proxy server is used.
+In the following section we'll walk through implementing, running and testing the JDWP proxy server.
+
+\end{document}

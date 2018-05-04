@@ -9,13 +9,14 @@
 \tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
 
   \begin{tikzpicture}[auto, node distance=2cm,>=latex']
+
     % Styles
     \tikzset{blue dotted/.style={draw=blue!50!white, line width=1pt,
                                dash pattern=on 1pt off 4pt on 6pt off 4pt,
                                 inner sep=4mm, rectangle, rounded corners}};
 
 
-                                % JVM 
+    % JVM 
     \node [block] (app) {Running application};
     \node [block, below of=app, node distance=3.5em] (jvmti) {JVM Tooling Interface};
     \node [block, below of=jvmti, node distance=3.5em] (jdwp-agent) {JDWP native agent};
@@ -26,21 +27,36 @@
     \node (debuggee box) [blue dotted, fit = (app) (jvmti) (jdwp-agent)] {};
     \node at (debuggee box.north) [above, inner sep=3mm] {\textbf{Java Virtual Machine}};
 
-    % Debugger
-    \node [block, right of=jdwp-agent, node distance=21em] (jdi) {Java Debug Interface};
-    \node [block, above of=jdi, node distance=7em] (debugger) {Debugger application};
+
+    % Proxy
+
+    \node[block, right of=jdwp-agent, node distance=21em, fill=black!15] (proxy) {Proxy Server};
+
+    % Debugger 1
+    \node [block, above of=proxy, node distance=6em] (jdi) {Java Debug Interface};
+    \node [block, above of=jdi, node distance=3em] (debugger) {Debugger application};
 
     \draw [-] (jdi) -- node {} (debugger);
 
     \node (debugger box) [blue dotted, fit = (jdi) (debugger)] {};
-    \node at (debugger box.north) [above, inner sep=3mm] {\textbf{Debugger}};
+    \node at (debugger box.north) [above, inner sep=3mm] {\textbf{Debugger 1}};
+    
+    % Debugger 2
+    \node [block, below of=proxy, node distance=6em] (jdi2) {Java Debug Interface};
+    \node [block, below of=jdi2, node distance=3em] (debugger2) {Debugger application};
+
+    \draw [-] (jdi2) -- node {} (debugger2);
+
+    \node (debugger2 box) [blue dotted, fit = (jdi2) (debugger2)] {};
+    \node at (debugger2 box.south) [below, inner sep=3mm] {\textbf{Debugger 2}};
+
 
     % JDWP
-    \draw [<->] (jdwp-agent) -- node {JDWP} (jdi);
-
-    %\node [block, left of=debugee-box, node distance=5cm] (bla) {Debugee}
+    \draw [<->] (jdwp-agent) -- node {JDWP} (proxy);
+    \draw [<->] (jdi) -- node {JDWP} (proxy);
+    \draw [<->] (proxy) -- node {JDWP} (jdi2);
 
   \end{tikzpicture}
-  \captionof{figure}{\it{Graphical representation of the Java Platform Debugger Architecture.}}
+  \captionof{figure}{\it{Graphical representation of the Java Platform Debugger Architecture with JDWP proxy server.}}
 
 \end{document}
