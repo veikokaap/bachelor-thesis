@@ -7,4 +7,9 @@ This section will describe in detail how the JDWP proxy server was implemented, 
 It will also discuss ways how the program is tested and what features it's still lacking.
 The following subsections will describe the implementation in the order which they were written starting from establishing a connection and ending with testing.
 
+The proxy server was decided to be written in Java 8.
+Java was used because it is a JVM language and so can be used on any machine where debugging Java can be used.
+Version 8 was used because that's the latest publicly available Java version with long time support.
+The integration tests also use Kotlin since it allows to write shorter, more concise and easy to read tests.
+
 \end{document}
