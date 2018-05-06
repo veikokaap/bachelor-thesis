@@ -16,11 +16,11 @@ In such a case the JVM is made to listen for connections from a debugger on a sp
 In its current state, the proxy server only supports TCP/IP based transport.
 Because the JVM has already specified a port on which to connect to the debugger, then in case the proxy server is running on the same machine, then it can't use the same port and must instead start listening for debugger connections on a different port.
 
-The graphic below illustrates how the connection works on different ports for the debuggers and the JVM.
+\subfile{./graphs/handshake-proxy.tex}
+
+The above graphic illustrates how the connection works on different ports for the debuggers and the JVM.
 In that graphic the JVM is using port 5005 for listening to debugger connections, but the proxy server exposes port 6006 for other debuggers to connect to.
 The debuggers themselves have to connect to the proxy port since the JVM port won't accept any more connections due to the proxy server already being connected to it.
 The graphic shows clearly how for the JVM, the proxy server starts the handshake, but for the debuggers it simply replies to the handshake.
-
-\subfile{./graphs/handshake-proxy.tex}
 
 \end{document}
