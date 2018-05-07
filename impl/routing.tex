@@ -23,4 +23,54 @@ As can be seen on the above graph, the first suspend command is forwarded to the
 With resume command it's the opposite: the first resume command is not forwarded, but the second one is.
 It's also important to mention that even though the command is not always forwarded to the JVM, the proxy server still has to reply to the debugger since each command packet sent from a debugger expects to receive a reply packet from the JVM.
 
+Similar problems rise with events and event requests.
+Debugger can send event requests to the JVM which will specify for which kind of events the debugger wishes to get notifications.
+Later when these events occur then the JVM will send event command packets to the debugger informing what event happened and other details about the event.
+These events can be about classes loaded or threads started or certain code being invoked in the application.
+
+Events and event requests are tricky for the proxy server to route because each debugger can ask for different kind of events, but the JVM later sends the events that happened at the same time, together.
+Event requests can also differ on what to do with the event when it occurs.
+One debugger can specify that the whole JVM should suspend when a breakpoint is hit, but other debugger says it should just suspend a single thread.
+
+Due to these difficulties, each event request is parsed by the proxy server and cached to later know which debugger requested which events.
+When JVM sends events to the proxy server, then these events are split accordingly and each debugger receives only the events it requested.
+
+\begin{lstlisting}[language=Java]
+private void sendEventsToSource(PacketSource source, CompositeEventCommand command) {
+  List<VirtualMachineEvent> events = command.getEvents().stream()
+      .filter(event -> isEventRequestedBySource(source, event))
+      .collect(Collectors.toList());
+  if (events.isEmpty()) {
+    return;
+  }
+
+  proxyCommandStream.write(
+      source,
+      CompositeEventCommand.create(
+        proxyCommandStream.getVmSource().createNewOutputId(), 
+        command.getSuspendPolicy(), 
+        events, vmInformation
+      )
+  );
+}
+\end{lstlisting}
+\begin{lstlisting}[language=Java]
+private boolean isEventRequestedBySource(PacketSource source, VirtualMachineEvent event){
+  if (event instanceof VmStartEvent || event instanceof VmDeathEvent) {
+    return true;
+  }
+  else {
+    RequestIdentifier identifier = new RequestIdentifier(
+      event.getEventKind(), event.getRequestId()
+    );
+    List<PacketSource> sources = eventRequestIdSourceMap.get(identifier);
+    return sources.contains(source);
+  }
+}
+\end{lstlisting}
+
+In the above code snippets, the \inlinecode{CompositeEventCommand} object has been parsed from a command packet received from the JVM.
+The command is then split into a separate command for each debugger with only the events which have it has requested.
+The JVM start and death events are always sent to each debugger as according to the JDWP specification. \cite{oracle_jdwp_spec}
+
 \end{document}
