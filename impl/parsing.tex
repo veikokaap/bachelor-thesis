@@ -36,8 +36,8 @@ public void write(DataWriter writer) {
 }
 \end{lstlisting}
 
-The above code snippet shows how the bytes are parsed for reading for a breakpoint event in the method \textit{read} and how the parsed data is processed back into bytes in method \textit{write}.
-Helper classes \textit{DataReader} and \textit{DataWriter} are used to make parsing and writing simpler and less error prone.
+The above code snippet shows how the bytes are parsed for reading for a breakpoint event in the method \inlinecode{read} and how the parsed data is processed back into bytes in method \inlinecode{write}.
+Helper classes \inlinecode{DataReader} and \inlinecode{DataWriter} are used to make parsing and writing simpler and less error prone.
 The meaning of fields for parsing is taken from Oracle documentation on JDWP: \url{https://docs.oracle.com/javase/10/docs/specs/jdwp/jdwp-protocol.html} 
 
 One detail that makes parsing the data field more difficult is the fact that the subfields used in the data field can have variable size depending on the JVM.
