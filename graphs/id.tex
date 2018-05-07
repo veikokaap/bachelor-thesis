@@ -95,7 +95,9 @@
     (\PRO 2) |- +(0.6,0) |- (\PRO 3);
   \fill
     (\PROJVM 2.south)
-      node[, below right=-3mm and -20mm, fill=white, text=black] {Change id: 1 $\rightarrow$ 2};
+      node[, below right=-3mm and -19mm, fill=white, text=black] {Change id: 1 $\rightarrow$ 2};
+  \draw [-latex, black]
+    (\PRO 3.west) |- +(-0.6,0) |- (\PRO 5);
   \draw [-latex, black]
     (\PRO 5) -- (\JVM 5);
   \fill
@@ -112,6 +114,8 @@
     (\SEDEPRO 7.south)
       node[, below left=-3mm and -17mm, fill=white, text=black] {Change id: 2 $\rightarrow$ 1};
   \draw [-latex, black]
+    (\PRO 8) |- +(0.6,0) |- (\PRO 10);
+  \draw [-latex, black]
     (\PRO 10) -- (\SEDE 10.east) arc(0:180:0.25cm) --(\FIDE 10);
   \fill
     (\SEDEPRO 10)
@@ -125,7 +129,9 @@
     (\PRO 12) |- +(0.6,0) |- (\PRO 13);
   \fill
     (\PROJVM 12.south)
-      node[, below right=-3mm and -20mm, fill=white, text=black] {Change id: 1 $\rightarrow$ 3};
+      node[, below right=-3mm and -19mm, fill=white, text=black] {Change id: 1 $\rightarrow$ 3};
+  \draw [-latex, black]
+    (\PRO 13.west) |- +(-0.6,0) |- (\PRO 15);
   \draw [-latex, black]
     (\PRO 15) -- (\JVM 15);
   \fill
@@ -141,6 +147,8 @@
   \fill
     (\SEDEPRO 17.south)
       node[, below left=-3mm and -17mm, fill=white, text=black] {Change id: 3 $\rightarrow$ 1};
+  \draw [-latex, black]
+    (\PRO 18) |- +(0.6,0) |- (\PRO 20);
   \draw [-latex, black]
     (\PRO 20) -- (\SEDE 20);
   \fill
