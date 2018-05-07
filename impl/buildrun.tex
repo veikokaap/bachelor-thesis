@@ -1,0 +1,17 @@
+%!TEX root = ../thesis.tex
+\documentclass[..thesis.tex]{subfiles}
+
+\begin{document}
+
+Proxy server is built using a build tool Maven which needs to be installed in order to build the application.
+Java 8 is also required for building and running the proxy server.
+Maven handles the compilation and the dependencies of the project and runs all the tests when building the application.
+In order to build the proxy server, navigate to application source root and invoke command \inlinecode{mvn clean package}.
+
+\begin{sloppypar}
+  After that, to run it, navigate to directory server-logic/target and invoke the command
+  \inlinecode{java -jar server-logic-0.1-SNAPSHOT.jar jvm.host=localhost jvm.port=5123 proxy.port=5456}.
+  If the \inlinecode{jvm.host} argument is not specified, then it defaults to address "127.0.0.1".
+\end{sloppypar}
+
+\end{document}
