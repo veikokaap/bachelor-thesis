@@ -2,4 +2,20 @@
 
 \begin{document}
 
+This thesis introduced the reader to debugging and described how debugging works for the Java Platform.
+It then detailed why using multiple debuggers concurrently is a needed feature.
+Multiple choices were proposed how to fix the problem and why most possibilities were lacking.
+
+In the last section, the implementation of Java Debug Wire Protocol (JDWP) proxy server was described.
+It brought out how to build and run the proxy server, how it was tested and why and how it really works.
+
+As described in section \ref{sec:impl_limitations}, the proxy server has its share of limitations which can be improved upon in the future.
+One of the most important aspects is to increase test coverage by creating more integration tests for testing wider set of use cases.
+Also, error management can be improved to make sure the proxy server behaves predictively if one debugger or JVM was to suddenly disconnect or start sending corrupted packets.
+
+The most important lacking feature for the proxy server functionality is the failure to specially handle breakpoints with a single thread suspend policy. 
+Currently, the proxy server assumes breakpoints are created which suspend all the JVM threads, but it is also possible to create breakpoints and other event requests which suspend only the thread where the event occurred.
+Such use cases work in some cases, but are currently mostly untested and might cause weird behaviour.
+
+
 \end{document}
