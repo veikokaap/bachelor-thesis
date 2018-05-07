@@ -1,0 +1,46 @@
+%!TEX root = ../thesis.tex
+\documentclass[..thesis.tex]{subfiles}
+
+\begin{document}
+
+As described in section \ref{sec:jdwp_spec}, all command packets coming from a single source must have a unique id.
+This can cause problems for the proxy server since multiple debuggers can send packets with identical ids and the JVM requires each id to be unique.
+That means the ids must be changed for the incoming packets in order to ensure their uniqueness.
+Another reason to do that is that it might be necessary for the proxy server to artificially create new packets to be sent to the JVM or debuggers and for these packets, also unique ids are needed.
+If the id generation is left to the debuggers and the JVM, then the created packet id might conflict with the original received packets.
+
+The logic for changing the ids of debugger command packets is that a new unique id is generated and the original id is changed to the generated one.
+Then the old id and the generated id are cached as a pair so if later a reply packet is received then it can be mapped back to the original id which the debugger expects to receive.
+The generated ids are global for all the debuggers, so the possible number of id values for a single debugger is twice smaller when two debuggers are connected.
+When more debuggers are connected, then the possible number of values will decrease even further.
+
+\subfile{./graphs/id.tex}
+
+As can be seen from the above graph, both debuggers send out a command packet with an identical id and later receive a reply with the same id, but the JVM will receive two different ids and regard them as completely different packets.
+
+\begin{lstlisting}[language=java]
+private class OutputPacketVisitor implements PacketVisitor<Packet> {
+  @Override
+  public Packet visit(CommandPacket packet) {
+    // Generate new id to ensure every packet reaching vm has a unique id
+    // This also makes it easy to later connect reply and command packets and avoid collision
+    int newId = getNewId(packet.getId());
+    return new CommandPacket(
+        newId,
+        packet.getCommandSetId(),
+        packet.getCommandId(),
+        packet.getData(),
+        packet.getSource()
+    );
+  }
+  @Override
+  public Packet visit(ReplyPacket packet) {
+    log.error("Debugger shouldn't output reply packets");
+    return packet;
+  }
+}
+\end{lstlisting}
+
+The class \inlinecode{OutputPacketVisitor} from above code snippet is responsible for taking a received command packet, generating a new id and then returning a new command packet with the changed id.
+
+\end{document}

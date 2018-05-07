@@ -1,0 +1,152 @@
+%!TEX root = ../presentation.tex
+\documentclass[..presentation.tex]{subfiles}
+\begin{document}
+\def\FIDE{Debugger 1}
+\def\SEDE{Debugger 2}
+\def\FIDESEDE{Debugger 1<->Debugger 2}
+\def\PRO{Proxy server}
+\def\SEDEPRO{Debugger 2<->Proxy server}
+\def\JVM{JVM}
+\def\PROJVM{Proxy server<->JVM}
+
+\begin{tikzpicture}[every node/.style={font=\normalsize,
+  minimum height=0cm,minimum width=0.5cm}]
+  \node [matrix, very thin,column sep=0cm,row sep=0.05cm] (matrix) at (0,0) {
+   & \node(0,0) (\FIDE) {}; &[5.0ex] \node(0,0) (\FIDESEDE) {}; &[5.0ex] \node(0,0) (\SEDE) {}; &[11.5ex] \node(0,0) (\SEDEPRO) {}; &[11.5ex] \node(0,0) (\PRO) {}; &[11.5ex] \node(0,0) (\PROJVM) {}; &[11.5ex] \node(0,0) (\JVM) {}; & \\
+   & \node(0,0) (\FIDE 0) {}; &[5.0ex] \node(0,0) (\FIDESEDE 0) {}; &[5.0ex] \node(0,0) (\SEDE 0) {}; &[11.5ex] \node(0,0) (\SEDEPRO 0) {}; &[11.5ex] \node(0,0) (\PRO 0) {}; &[11.5ex] \node(0,0) (\PROJVM 0) {}; &[11.5ex] \node(0,0) (\JVM 0) {}; & \\
+   & \node(0,0) (\FIDE 1) {}; &[5.0ex] \node(0,0) (\FIDESEDE 1) {}; &[5.0ex] \node(0,0) (\SEDE 1) {}; &[11.5ex] \node(0,0) (\SEDEPRO 1) {}; &[11.5ex] \node(0,0) (\PRO 1) {}; &[11.5ex] \node(0,0) (\PROJVM 1) {}; &[11.5ex] \node(0,0) (\JVM 1) {}; & \\
+   & \node(0,0) (\FIDE 2) {}; &[5.0ex] \node(0,0) (\FIDESEDE 2) {}; &[5.0ex] \node(0,0) (\SEDE 2) {}; &[11.5ex] \node(0,0) (\SEDEPRO 2) {}; &[11.5ex] \node(0,0) (\PRO 2) {}; &[11.5ex] \node(0,0) (\PROJVM 2) {}; &[11.5ex] \node(0,0) (\JVM 2) {}; & \\
+   & \node(0,0) (\FIDE 3) {}; &[5.0ex] \node(0,0) (\FIDESEDE 3) {}; &[5.0ex] \node(0,0) (\SEDE 3) {}; &[11.5ex] \node(0,0) (\SEDEPRO 3) {}; &[11.5ex] \node(0,0) (\PRO 3) {}; &[11.5ex] \node(0,0) (\PROJVM 3) {}; &[11.5ex] \node(0,0) (\JVM 3) {}; & \\
+   & \node(0,0) (\FIDE 4) {}; &[5.0ex] \node(0,0) (\FIDESEDE 4) {}; &[5.0ex] \node(0,0) (\SEDE 4) {}; &[11.5ex] \node(0,0) (\SEDEPRO 4) {}; &[11.5ex] \node(0,0) (\PRO 4) {}; &[11.5ex] \node(0,0) (\PROJVM 4) {}; &[11.5ex] \node(0,0) (\JVM 4) {}; & \\
+   & \node(0,0) (\FIDE 5) {}; &[5.0ex] \node(0,0) (\FIDESEDE 5) {}; &[5.0ex] \node(0,0) (\SEDE 5) {}; &[11.5ex] \node(0,0) (\SEDEPRO 5) {}; &[11.5ex] \node(0,0) (\PRO 5) {}; &[11.5ex] \node(0,0) (\PROJVM 5) {}; &[11.5ex] \node(0,0) (\JVM 5) {}; & \\
+   & \node(0,0) (\FIDE 6) {}; &[5.0ex] \node(0,0) (\FIDESEDE 6) {}; &[5.0ex] \node(0,0) (\SEDE 6) {}; &[11.5ex] \node(0,0) (\SEDEPRO 6) {}; &[11.5ex] \node(0,0) (\PRO 6) {}; &[11.5ex] \node(0,0) (\PROJVM 6) {}; &[11.5ex] \node(0,0) (\JVM 6) {}; & \\
+   & \node(0,0) (\FIDE 7) {}; &[5.0ex] \node(0,0) (\FIDESEDE 7) {}; &[5.0ex] \node(0,0) (\SEDE 7) {}; &[11.5ex] \node(0,0) (\SEDEPRO 7) {}; &[11.5ex] \node(0,0) (\PRO 7) {}; &[11.5ex] \node(0,0) (\PROJVM 7) {}; &[11.5ex] \node(0,0) (\JVM 7) {}; & \\
+   & \node(0,0) (\FIDE 8) {}; &[5.0ex] \node(0,0) (\FIDESEDE 8) {}; &[5.0ex] \node(0,0) (\SEDE 8) {}; &[11.5ex] \node(0,0) (\SEDEPRO 8) {}; &[11.5ex] \node(0,0) (\PRO 8) {}; &[11.5ex] \node(0,0) (\PROJVM 8) {}; &[11.5ex] \node(0,0) (\JVM 8) {}; & \\
+   & \node(0,0) (\FIDE 9) {}; &[5.0ex] \node(0,0) (\FIDESEDE 9) {}; &[5.0ex] \node(0,0) (\SEDE 9) {}; &[11.5ex] \node(0,0) (\SEDEPRO 9) {}; &[11.5ex] \node(0,0) (\PRO 9) {}; &[11.5ex] \node(0,0) (\PROJVM 9) {}; &[11.5ex] \node(0,0) (\JVM 9) {}; & \\
+   & \node(0,0) (\FIDE 10) {}; &[5.0ex] \node(0,0) (\FIDESEDE 10) {}; &[5.0ex] \node(0,0) (\SEDE 10) {}; &[11.5ex] \node(0,0) (\SEDEPRO 10) {}; &[11.5ex] \node(0,0) (\PRO 10) {}; &[11.5ex] \node(0,0) (\PROJVM 10) {}; &[11.5ex] \node(0,0) (\JVM 10) {}; & \\
+   & \node(0,0) (\FIDE 11) {}; &[5.0ex] \node(0,0) (\FIDESEDE 11) {}; &[5.0ex] \node(0,0) (\SEDE 11) {}; &[11.5ex] \node(0,0) (\SEDEPRO 11) {}; &[11.5ex] \node(0,0) (\PRO 11) {}; &[11.5ex] \node(0,0) (\PROJVM 11) {}; &[11.5ex] \node(0,0) (\JVM 11) {}; & \\
+   & \node(0,0) (\FIDE 12) {}; &[5.0ex] \node(0,0) (\FIDESEDE 12) {}; &[5.0ex] \node(0,0) (\SEDE 12) {}; &[11.5ex] \node(0,0) (\SEDEPRO 12) {}; &[11.5ex] \node(0,0) (\PRO 12) {}; &[11.5ex] \node(0,0) (\PROJVM 12) {}; &[11.5ex] \node(0,0) (\JVM 12) {}; & \\
+   & \node(0,0) (\FIDE 13) {}; &[5.0ex] \node(0,0) (\FIDESEDE 13) {}; &[5.0ex] \node(0,0) (\SEDE 13) {}; &[11.5ex] \node(0,0) (\SEDEPRO 13) {}; &[11.5ex] \node(0,0) (\PRO 13) {}; &[11.5ex] \node(0,0) (\PROJVM 13) {}; &[11.5ex] \node(0,0) (\JVM 13) {}; & \\
+   & \node(0,0) (\FIDE 14) {}; &[5.0ex] \node(0,0) (\FIDESEDE 14) {}; &[5.0ex] \node(0,0) (\SEDE 14) {}; &[11.5ex] \node(0,0) (\SEDEPRO 14) {}; &[11.5ex] \node(0,0) (\PRO 14) {}; &[11.5ex] \node(0,0) (\PROJVM 14) {}; &[11.5ex] \node(0,0) (\JVM 14) {}; & \\
+   & \node(0,0) (\FIDE 15) {}; &[5.0ex] \node(0,0) (\FIDESEDE 15) {}; &[5.0ex] \node(0,0) (\SEDE 15) {}; &[11.5ex] \node(0,0) (\SEDEPRO 15) {}; &[11.5ex] \node(0,0) (\PRO 15) {}; &[11.5ex] \node(0,0) (\PROJVM 15) {}; &[11.5ex] \node(0,0) (\JVM 15) {}; & \\
+   & \node(0,0) (\FIDE 16) {}; &[5.0ex] \node(0,0) (\FIDESEDE 16) {}; &[5.0ex] \node(0,0) (\SEDE 16) {}; &[11.5ex] \node(0,0) (\SEDEPRO 16) {}; &[11.5ex] \node(0,0) (\PRO 16) {}; &[11.5ex] \node(0,0) (\PROJVM 16) {}; &[11.5ex] \node(0,0) (\JVM 16) {}; & \\
+   & \node(0,0) (\FIDE 17) {}; &[5.0ex] \node(0,0) (\FIDESEDE 17) {}; &[5.0ex] \node(0,0) (\SEDE 17) {}; &[11.5ex] \node(0,0) (\SEDEPRO 17) {}; &[11.5ex] \node(0,0) (\PRO 17) {}; &[11.5ex] \node(0,0) (\PROJVM 17) {}; &[11.5ex] \node(0,0) (\JVM 17) {}; & \\
+   & \node(0,0) (\FIDE 18) {}; &[5.0ex] \node(0,0) (\FIDESEDE 18) {}; &[5.0ex] \node(0,0) (\SEDE 18) {}; &[11.5ex] \node(0,0) (\SEDEPRO 18) {}; &[11.5ex] \node(0,0) (\PRO 18) {}; &[11.5ex] \node(0,0) (\PROJVM 18) {}; &[11.5ex] \node(0,0) (\JVM 18) {}; & \\
+   & \node(0,0) (\FIDE 19) {}; &[5.0ex] \node(0,0) (\FIDESEDE 19) {}; &[5.0ex] \node(0,0) (\SEDE 19) {}; &[11.5ex] \node(0,0) (\SEDEPRO 19) {}; &[11.5ex] \node(0,0) (\PRO 19) {}; &[11.5ex] \node(0,0) (\PROJVM 19) {}; &[11.5ex] \node(0,0) (\JVM 19) {}; & \\
+   & \node(0,0) (\FIDE 20) {}; &[5.0ex] \node(0,0) (\FIDESEDE 20) {}; &[5.0ex] \node(0,0) (\SEDE 20) {}; &[11.5ex] \node(0,0) (\SEDEPRO 20) {}; &[11.5ex] \node(0,0) (\PRO 20) {}; &[11.5ex] \node(0,0) (\PROJVM 20) {}; &[11.5ex] \node(0,0) (\JVM 20) {}; & \\
+   & \node(0,0) (\FIDE 21) {}; &[5.0ex] \node(0,0) (\FIDESEDE 21) {}; &[5.0ex] \node(0,0) (\SEDE 21) {}; &[11.5ex] \node(0,0) (\SEDEPRO 21) {}; &[11.5ex] \node(0,0) (\PRO 21) {}; &[11.5ex] \node(0,0) (\PROJVM 21) {}; &[11.5ex] \node(0,0) (\JVM 21) {}; & \\
+   & \node(0,0) (\FIDE 22) {}; &[5.0ex] \node(0,0) (\FIDESEDE 22) {}; &[5.0ex] \node(0,0) (\SEDE 22) {}; &[11.5ex] \node(0,0) (\SEDEPRO 22) {}; &[11.5ex] \node(0,0) (\PRO 22) {}; &[11.5ex] \node(0,0) (\PROJVM 22) {}; &[11.5ex] \node(0,0) (\JVM 22) {}; & \\
+  };
+
+  \fill
+    (\FIDE) node[draw,fill=blue!20] {\FIDE}
+    (\SEDE) node[draw,fill=teal!20] {\SEDE}
+    (\PRO) node[draw,fill=black!20] {\PRO}
+    (\JVM) node[draw,fill=red!20] {\JVM}
+  ;
+
+  \draw
+    (\FIDE22)
+       node[draw,isosceles triangle, fill=black, rotate=-90]
+        (\FIDE FIDEtime) {}
+       node[below right] {$t$}
+    (\SEDE22)
+       node[draw,isosceles triangle, fill=black, rotate=-90]
+        (\SEDE SEDEtime) {}
+       node[below right] {$t$}
+    (\PRO22)
+       node[draw,isosceles triangle, fill=black, rotate=-90]
+        (\PRO PROtime) {}
+       node[below right] {$t$}
+    (\JVM22)
+       node[draw,isosceles triangle, fill=black, rotate=-90]
+        (\JVM JVMtime) {}
+       node[below right] {$t$}
+  ;
+
+  \draw[dashed]
+    (\FIDE 0) -- (\FIDE 22)
+    (\SEDE 0) -- (\SEDE 22)
+    (\PRO 0) -- (\PRO 22)
+    (\JVM 0) -- (\JVM 22)
+  ;
+
+  \filldraw[fill=red!20]
+  (\JVM 5.north west) rectangle (\JVM 7.south east);
+
+  \filldraw[fill=blue!20]
+  (\FIDE 2.north west) rectangle (\FIDE 10.south east);
+
+  \filldraw[fill=red!20]
+  (\JVM 15.north west) rectangle (\JVM 17.south east);
+
+  \filldraw[fill=teal!20]
+  (\SEDE 12.north west) rectangle (\SEDE 20.south east);
+
+  \filldraw[fill=black!20]
+  (\PRO 2.north west) rectangle (\PRO 20.south east);
+
+  \draw [-latex, blue]
+    (\FIDE 2) -- (\SEDE 2.west) arc(180:0:0.25cm) --(\PRO 2);
+  \fill
+    (\SEDEPRO 2)
+      node[, above=-0.1cm, text=blue] {Command packet(id=1)};
+  \draw [-latex, black]
+    (\PRO 2) |- +(0.6,0) |- (\PRO 3);
+  \fill
+    (\PROJVM 2.south)
+      node[, below right=-3mm and -20mm, fill=white, text=black] {Change id: 1 $\rightarrow$ 2};
+  \draw [-latex, black]
+    (\PRO 5) -- (\JVM 5);
+  \fill
+    (\PROJVM 5)
+      node[, above=-0.1cm, text=black] {Command packet(id=2)};
+  \draw [-latex, red]
+    (\JVM 7) -- (\PRO 7);
+  \fill
+    (\PROJVM 7)
+      node[, above=-0.1cm, text=red] {Reply packet(id=2)};
+  \draw [-latex, black]
+    (\PRO 7.west) |- +(-0.6,0) |- (\PRO 8);
+  \fill
+    (\SEDEPRO 7.south)
+      node[, below left=-3mm and -17mm, fill=white, text=black] {Change id: 2 $\rightarrow$ 1};
+  \draw [-latex, black]
+    (\PRO 10) -- (\SEDE 10.east) arc(0:180:0.25cm) --(\FIDE 10);
+  \fill
+    (\SEDEPRO 10)
+      node[, above=-0.1cm, text=black] {Reply packet(id=1)};
+  \draw [-latex, teal]
+    (\SEDE 12) -- (\PRO 12);
+  \fill
+    (\SEDEPRO 12)
+      node[, above=-0.1cm, text=teal] {Command packet(id=1)};
+  \draw [-latex, black]
+    (\PRO 12) |- +(0.6,0) |- (\PRO 13);
+  \fill
+    (\PROJVM 12.south)
+      node[, below right=-3mm and -20mm, fill=white, text=black] {Change id: 1 $\rightarrow$ 3};
+  \draw [-latex, black]
+    (\PRO 15) -- (\JVM 15);
+  \fill
+    (\PROJVM 15)
+      node[, above=-0.1cm, text=black] {Command packet(id=3)};
+  \draw [-latex, red]
+    (\JVM 17) -- (\PRO 17);
+  \fill
+    (\PROJVM 17)
+      node[, above=-0.1cm, text=red] {Reply packet(id=3)};
+  \draw [-latex, black]
+    (\PRO 17.west) |- +(-0.6,0) |- (\PRO 18);
+  \fill
+    (\SEDEPRO 17.south)
+      node[, below left=-3mm and -17mm, fill=white, text=black] {Change id: 3 $\rightarrow$ 1};
+  \draw [-latex, black]
+    (\PRO 20) -- (\SEDE 20);
+  \fill
+    (\SEDEPRO 20)
+      node[, above=-0.1cm, text=black] {Reply packet(id=1)};
+
+\end{tikzpicture}
+\captionof{figure}{\it{Graphical illustration of changing packet ids for debuggers.}}
+\end{document}
