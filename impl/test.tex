@@ -1,0 +1,86 @@
+%!TEX root = ../thesis.tex
+\documentclass[..thesis.tex]{subfiles}
+
+\begin{document}
+
+For testing the proxy server, both unit and integration tests were used.
+The unit tests were written in Java, but for the integration tests a simple test framework was written in Kotlin and Java.
+The test framework will start a simple application in a forked JVM which has debugging enabled.
+It will also start the proxy server which is attached to the JVM and starts one or two debuggers which connect to the proxy server.
+After that, the test framework will allow the developer to add breakpoints, run code when breakpoints are hit and suspend/resume the JVM through both debuggers.
+The test written using this framework can assert that the proxy server will behave correctly when manipulating the execution of the JVM with two concurrent debuggers.
+
+\begin{lstlisting}[language=Kotlin]
+val testClass = SimpleBreakpointClass::class.java
+val firstLocation = BreakpointUtil.findBreakLocation(testClass, 0)
+val secondLocation = BreakpointUtil.findBreakLocation(testClass, 1)
+
+@Test
+fun `test single breakpoint with 2 debuggers`() = 
+  runTest(testClass) { jvm, firstDebugger, secondDebugger ->
+    val firstBreak = firstDebugger.breakAt(firstLocation) {
+      jvm.outputDeque.assertAddedOutput("Before breakpoints")
+    } thenResume {}
+
+    val secondBreak = secondDebugger.breakAt(firstLocation) {
+      firstBreak.joinAndTest(4, TimeUnit.SECONDS)
+      assertTrue(jvm.outputDeque.isEmpty())
+    } thenResume {}
+
+    firstDebugger.allBreakpointSet()
+
+    secondBreak.joinAndTest()
+    jvm.waitForExit()
+
+    jvm.outputDeque.assertAddedOutput("After breakpoint 0", "After breakpoint 1")
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=Java]
+public class SimpleBreakpointClass {
+  public static void main(String[] args) {
+    System.out.println("Before breakpoints");
+    BreakpointUtil.mark(0);
+    System.out.println("After breakpoint 0");
+    BreakpointUtil.mark(1);
+    System.out.println("After breakpoint 1");
+  }
+}
+\end{lstlisting}
+
+The first code snippet above shows how the breakpoints are set and output asserted using the test framework and the second code snippet shows the class that is executed by the JVM.
+
+Below is an example of a unit test from the proxy server.
+
+\clearpage
+
+\begin{lstlisting}[language=Java]
+public class FieldAccessEventTest extends EventTestBase {
+  @Test
+  public void testReadAndWriteEqualsOriginalEvent() throws ReflectiveOperationException {
+    assertWrittenEventEqualsReadEvent(EventKind.FIELD_ACCESS, FieldAccessEvent.create(
+            randomInt(),
+            randomThreadId(),
+            randomLocation(),
+            randomByte(),
+            randomReferenceTypeId(),
+            randomFieldId(),
+            randomTaggedObjectId()
+    ));
+  }
+  protected <T extends VirtualMachineEvent> void assertWrittenEventEqualsReadEvent(EventKind expectedEventKind, T originalEvent) throws ReflectiveOperationException {
+    ByteBuffer buffer = ByteBuffer.allocate(4096);
+
+    writeEvent(buffer, originalEvent);
+    EventKind readEventKind = EventKind.read(createReader(buffer));
+    T readEvent = readEvent(buffer, (Class<T>) originalEvent.getClass());
+
+    assertEquals(expectedEventKind, readEventKind);
+    assertEquals(originalEvent, readEvent);
+  }
+}
+\end{lstlisting}
+
+The test coverage of the proxy server per lines of code is 72\%.
+
+\end{document}
