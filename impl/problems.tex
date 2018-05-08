@@ -1,0 +1,19 @@
+%!TEX root = ../thesis.tex
+\documentclass[..thesis.tex]{subfiles}
+
+\begin{document}
+
+The implemented proxy server solves most of the use cases for using multiple debugger concurrently described in section \ref{sec:need_for_proxy}.
+There are however small problems and corner cases where it might not function as expected.
+Not all implemented use cases are covered by the tests yet so these use cases cannot be guaranteed to work.
+What also needs to be improved is how to handle debuggers connecting and disconnecting while the JVM is suspended or when some packets from the disconnected debugger are still being processed.
+
+The JPDA also has very many different events and filters for the event requests.
+All of these different events should be tested to make sure there is no undefined behaviour caused by the proxy server.
+
+The data given to the JVM with event requests specifies a suspend policy for the triggered event.
+It specifies whether the JVM should suspend only the thread in which the event occurred or all threads.
+It's possible also to suspend no threads and to just notify the debugger that the event occurred.
+The proxy server currently doesn't support when one debugger creates events with global suspend policy and other creates single suspended thread events.
+
+\end{document}
