@@ -5,11 +5,11 @@
 
 Since the packets received from the JVM or debuggers is just a sequence of bytes, then it is necessary to parse them before they can be further processed.
 The header of a packet is quite easy to parse since it's always 11 bytes and can only be either a reply or a command packet.
-The data bytes of a packet however are different for each command and reply packet.
+The data bytes of a packet, however, are different for each command and reply packet.
 
-First it is important to understand what are the values of the command set and command fields of the packet. 
-For a command packet the fields are available in the packet header.
-Reply packet doesn't contain these fields, but based on the packet id it's possible to find the command packet and use its command set and command field.
+First, it is important to understand what are the values of the command set and command fields of the packet. 
+For a command packet, the fields are available in the packet header.
+Reply packet doesn't contain these fields, but based on the packet id it's possible to find the command packet and use its command set field and the command field.
 Due to this, the command packet field values are remembered until a reply has been received. 
 
 Using the command set and command field values, it is possible to identify the correct command and the type of fields it has in its data bytes.
@@ -37,7 +37,7 @@ public void write(DataWriter writer) {
 \end{lstlisting}
 
 The above code snippet shows how the bytes are parsed for reading for a breakpoint event in the method \inlinecode{read} and how the parsed data is processed back into bytes in method \inlinecode{write}.
-Helper classes \inlinecode{DataReader} and \inlinecode{DataWriter} are used to make parsing and writing simpler and less error prone.
+Helper classes \inlinecode{DataReader} and \inlinecode{DataWriter} are used to make parsing and writing simpler and less error-prone.
 The meaning of fields for parsing is taken from Oracle documentation on JDWP: \url{https://docs.oracle.com/javase/10/docs/specs/jdwp/jdwp-protocol.html} 
 
 One detail that makes parsing the data field more difficult is the fact that the subfields used in the data field can have variable size depending on the JVM.

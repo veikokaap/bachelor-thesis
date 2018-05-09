@@ -3,10 +3,10 @@
 
 \begin{document}
 
-The JDWP start up consists of connection establishment and the following handshake between the virtual machine (VM) and the debugger.
+The JDWP startup consists of connection establishment and the following handshake between the virtual machine (VM) and the debugger.
 Handshake consists of debugger sending 14 bytes of ASCII characters of the string "JDWP-Handshake" to the VM and the VM replying with the same 14 bytes.\cite{oracle_jdwp_spec}
 
-JDWP is packet based and is not stateful. There exists two types of packets: command packets and reply packets.
+JDWP is packet based and is not stateful. In JDWP there exist two types of packets: command packets and reply packets.
 The JDWP is asynchronous so it is possible to send multiple command packets before a reply is received for the first command.
 
 Both the target VM and the debugger can send command packets. For the debugger, they're used to "request information from the target VM, or to control program execution."
@@ -47,17 +47,17 @@ It is required for the reply packet to have the same id as the command packet to
 Furthermore, the values of the id field must be unique for all command packets sent from a single source.
 The flags field is currently only used to mark whether a packet is a reply packet or a command packet.
 
-The command set field in command packets are used for grouping commands. 
-Command sets with a value from 0 to 63 are used for command packets sent to the target VM and command sets with a value from 64 to 127 is used for command packets sent to the debugger. Rest of the possible values from 128 to 256 are left for vendor-define commands and extensions.\cite{oracle_jdwp_spec}
+The command set field in command packets is used for grouping commands. 
+Command sets with a value from 0 to 63 are used for command packets sent to the target VM and command sets with a value from 64 to 127 is used for command packets sent to the debugger. Rest of the possible values from 128 to 256 are left for vendor-defined commands and extensions.\cite{oracle_jdwp_spec}
 The command field combined with the command set field is used to identify how the command packet should be handled. 
 Request packets don't need command set and command fields since they are paired with a command packet which already contains this information.
 Error code field is only present in reply packets and it is used to show whether the command packet was processed successfully or an error has occurred during its processing.
 
-Data field is unique for each specific command and it also differs between the command and reply packet pairs, so a command packet can have different value than its reply.
-The data field of a packet is usually abstracted to a group of multiple subfields that define the packet data. The subfields are encoded in big endian (Java) format.
+Data field is unique for each specific command and it also differs between the command and reply packet pairs, so a command packet can have a different value than its reply.
+The data field of a packet is usually abstracted to a group of multiple subfields that define the packet data. The subfields are encoded in big-endian (Java) format.
 For the abstracted subfields, the protocol uses some of Java primitive types like byte, boolean, int, long, but it also defines some custom types.
 Most of these custom types can have a variable size in bytes depending on the JVM.
-In order to find the size of these types, the protocol has a "idSizes" command which replies to the debugger with the sizes of different types.\cite{oracle_jdwp_spec}
+In order to find the size of these types, the protocol has an "idSizes" command which replies to the debugger with the sizes of different types.\cite{oracle_jdwp_spec}
 All the types used in the data field are listed in the following Oracle documentation: \url{https://docs.oracle.com/javase/10/docs/specs/jdwp/jdwp-spec.html\#detailed-command-information}
 
 \end{document}

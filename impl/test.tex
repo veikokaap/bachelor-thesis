@@ -4,7 +4,7 @@
 \begin{document}
 
 For testing the proxy server, both unit and integration tests were used.
-The unit tests were written in Java, but for the integration tests a simple test framework was written in Kotlin and Java.
+The unit tests were written in Java, but for the integration tests, a simple test framework was written in Kotlin and Java.
 The test framework will start a simple application in a forked JVM which has debugging enabled.
 It will also start the proxy server which is attached to the JVM and starts one or two debuggers which connect to the proxy server.
 After that, the test framework will allow the developer to add breakpoints, run code when breakpoints are hit and suspend/resume the JVM through both debuggers.

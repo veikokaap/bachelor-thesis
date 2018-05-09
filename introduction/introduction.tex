@@ -3,8 +3,6 @@
 
 \begin{document}
 
-\toguide{Background to the problem.}
-
 Java Virtual Machine (JVM) is an abstract computing machine which has an instruction set and which manipulates various memory areas at run time.\cite{oracle_jvm_spec}
 
 One of the important parts which makes the JVM a popular platform for creating new programming languages is its built-in debugging functionality. 
@@ -13,20 +11,16 @@ This functionality comes from the Java Platform Debugger Architecture, also know
 While the JPDA provides extensive tools for debugging any application running on the JVM, it has the limitations of only accepting a single connection between the debugger and the JVM. 
 It's not currently possible to attach multiple debuggers to a single JVM.
 
-\toguide{What is this thesis/paper about? What problem are we trying to solve?}
-
 The purpose of this paper is to get rid of this limitation by creating a proxy server which would connect to the JVM and then allow multiple debuggers to connect to it. 
 Such proxy server would allow the use of multiple different IDEs (Integrated Development Environment) while debugging. 
 It would also enable to debug the JVM from multiple remote computers at the same time. 
-While there are workarounds for this limitation, none of them provide a convenient single solution for every aspect of the limitation. 
-
-\toguide{What are the main priorities? What do we want to achieve?}
+While there are workarounds for this limitation, none of them provides a convenient single solution for every aspect of the limitation. 
 
 The development of the program has two main priorities. 
 First priority is that if only a single debugger is connected to the proxy server, then the behaviour of the proxy server should be identical to a situation where the debugger is connected straight to the JVM.
 
 The second priority involves two or more debuggers being connected to the server. 
-In such case the proxy server will route and handle the data with the intention of creating an impression to every debugger of being connected directly to the JVM.
+In such case, the proxy server will route and handle the data with the intention of creating an impression to every debugger of being connected directly to the JVM.
 
 The main use cases when multiple debuggers are connected include setting, clearing and hitting breakpoints in code, stepping to next lines and also resuming and suspending threads.
 These use cases will be covered and tested most extensively.

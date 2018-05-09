@@ -15,16 +15,16 @@ The proxy server must have special logic to handle these commands since sending 
 For example, if two debuggers send a suspend command to the proxy server, then the proxy server needs to remember that both debuggers want the JVM to be suspended, but won't suspend the JVM twice.
 When one of these debuggers later sends a resume command to the proxy server, then it won't be sent on to the JVM because one debugger still needs the JVM to stay suspended.
 The resume command is only sent on when both debuggers have sent it.
-Otherwise, the second debugger would think the JVM is still suspended, but actually it has been resumed by the first one.
+Otherwise, the second debugger would think the JVM is still suspended, but actually, it has been resumed by the first one.
 
 \subfile{./graphs/suspend-proxy-2.tex}
 
-As can be seen on the above graph, the first suspend command is forwarded to the JVM, but the second one isn't. 
+As can be seen in the above figure, the first suspend command is forwarded to the JVM, but the second one isn't. 
 With resume command it's the opposite: the first resume command is not forwarded, but the second one is.
 It's also important to mention that even though the command is not always forwarded to the JVM, the proxy server still has to reply to the debugger since each command packet sent from a debugger expects to receive a reply packet from the JVM.
 
-Similar problems rise with events and event requests.
-Debugger can send event requests to the JVM which will specify for which kind of events the debugger wishes to get notifications.
+Similar problems arise with events and event requests.
+A debugger can send event requests to the JVM which will specify for which kind of events the debugger wishes to get notifications.
 Later when these events occur then the JVM will send event command packets to the debugger informing what event happened and other details about the event.
 These events can be about classes loaded or threads started or certain code being invoked in the application.
 

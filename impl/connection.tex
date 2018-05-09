@@ -3,13 +3,13 @@
 
 \begin{document}
 
-Connection of proxy server with the JVM and with the debuggers is similar, but not identical.
+The connection between the proxy server and the JVM and between the proxy server and debuggers is similar, but not identical.
 JPDA specifies that after a connection is established between JVM and a debugger, then the debugger sends a handshake consisting of ASCII string "JDWP-Handshake" to the JVM and the JVM sends back the same string.
-After the connection is established and handshake is finished, then JVM stops allowing new connections to that socket until the debugger is disconnected.
+After the connection is established and the handshake is finished, then JVM stops allowing new connections to that socket until the debugger is disconnected.
 
 The proxy server behaves in a similar fashion, first connecting to the JVM and sending to it the handshake bytes and waiting for the bytes to be sent back.
 Then it starts to wait for connections from debuggers and will reply to their handshakes once they establish a connection.
-The proxy server will connect only to a single JVM, but it will allow unlimited number of debuggers to establish a connection with itself.
+The proxy server will connect only to a single JVM, but it will allow an unlimited number of debuggers to establish a connection with itself.
 
 Even though JDWP doesn't specify over which communication channel the connection should be made, the most often used way is to use TCP/IP based transport.
 In such a case the JVM is made to listen for connections from a debugger on a specific port specified in JVM startup arguments.
@@ -18,9 +18,9 @@ Because the JVM has already specified a port on which to connect to the debugger
 
 \subfile{./graphs/handshake-proxy.tex}
 
-The above graphic illustrates how the connection works on different ports for the debuggers and the JVM.
-In that graphic the JVM is using port 5005 for listening to debugger connections, but the proxy server exposes port 6006 for other debuggers to connect to.
+The above figure illustrates how the connection works on different ports for the debuggers and the JVM.
+In that figure the JVM is using port 5005 for listening to debugger connections, but the proxy server exposes port 6006 for other debuggers to connect to.
 The debuggers themselves have to connect to the proxy port since the JVM port won't accept any more connections due to the proxy server already being connected to it.
-The graphic shows clearly how for the JVM, the proxy server starts the handshake, but for the debuggers it simply replies to the handshake.
+The graphic shows clearly how for the JVM, the proxy server starts the handshake, but for the debuggers, it simply replies to the handshake.
 
 \end{document}

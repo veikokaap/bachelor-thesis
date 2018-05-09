@@ -3,8 +3,6 @@
 
 \begin{document}
 
-\toguide{Introduction to debugging and the JVM}
-
 Java Virtual Machine (JVM) is an abstract computing machine which has an instruction set and which manipulates various memory areas at run time.\cite{oracle_jvm_spec}
 It specifies the class file format which "contains Java Virtual Machine instructions (or \textit{bytecodes}) and a symbol table, as well as other ancillary information"\cite{oracle_jvm_spec}.
 
@@ -17,9 +15,9 @@ There are many advantages to using the JVM instead of implementing your own virt
 \begin{itemize}
   \item Platform independence - 
     The JVM is designed to adhere to the idea of writing once and running anywhere. 
-    All the language developer has to do is to compile the code to a class file and after that the program will run in the same manner on all the platforms which the JVM supports.
+    All the language developer has to do is to compile the code to a class file and after that, the program will run in the same manner on all the platforms which the JVM supports.
   \item Security - 
-    The JVM has built-in security features which prevents malicious software from compromising the Operating System(OS). 
+    The JVM has built-in security features which prevent malicious software from compromising the Operating System(OS). 
   \item Optimization - 
     The JVM can take unoptimized class files and optimize them to run faster and consume less memory. 
     That means the language developer doesn't need to worry about optimization, but can instead leave that task to the JVM.
@@ -32,6 +30,6 @@ There are many advantages to using the JVM instead of implementing your own virt
 \end{itemize}
 
 For the present thesis, the last item is the most important - the problem being solved exists in the JVM and so affects all the JVM languages. 
-The solution provided in this thesis will solve the problem for the JVM, so it's not only limited to the Java language, but for any language targeting the JVM (e.g. Groovy, Kotlin, Scala).
- 
+The solution provided in this thesis will solve the problem for the JVM, so it's not only limited to the Java language but for any language targeting the JVM (e.g. Groovy, Kotlin, Scala).
+
 \end{document}

@@ -7,8 +7,8 @@ Since there is no support from the JVM to connect multiple debuggers simultaneou
 JPDA is multi-tiered, as described in section \ref{sec:jpda}, then this thesis will consider all three layers of the architecture when solving the problem.
 For each layer, there is a different approach on how to solve the limitation.
 
-Starting with the JVMTI, at first this might seem as the most promising layer for allowing multiple debuggers since it is in this layer where connection with the debugger is done.
-Working in this layer however would mean creating a new native agent which would duplicate all the debugging functionality of the built-in JDWP back-end agent, but at the same time add the support for multiple debuggers.
+Starting with the JVM TI, at first, this might seem like the most promising layer for allowing multiple debuggers since it is in this layer where the connection with the debugger is done.
+Working in this layer, however, would mean creating a new native agent which would duplicate all the debugging functionality of the built-in JDWP back-end agent, but at the same time add the support for multiple debuggers.
 Simply taking the existing native agent and modifying it isn't an option, since this agent might differ between different JVM vendors and might change with each JVM release.
 Also, since it's a native agent, then it would need to be built for each supported platform making its distribution and usage more difficult.
 
@@ -33,7 +33,7 @@ Thanks to that, most of the development time for the proxy server can be focused
 \subfile{./graphs/jpda-proxy.tex}
 
 The above figure illustrates how the JPDA should function with a JDWP proxy server in use.
-Proxy server will intercept the connection between the JVM and the debuggers and start passing and modifying sent packets.
-In the following section we'll walk through implementing, running and testing the JDWP proxy server.
+The proxy server will intercept the connection between the JVM and the debuggers and start passing and modifying sent packets.
+In the following section, we'll walk through implementing, running and testing the JDWP proxy server.
 
 \end{document}
