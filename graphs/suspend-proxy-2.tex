@@ -35,7 +35,6 @@
    & \node(0,0) (\FIDE 19) {}; &[5.0ex] \node(0,0) (\FIDESEDE 19) {}; &[5.0ex] \node(0,0) (\SEDE 19) {}; &[11ex] \node(0,0) (\SEDEPRO 19) {}; &[11ex] \node(0,0) (\PRO 19) {}; &[11.5ex] \node(0,0) (\PROJVM 19) {}; &[11.5ex] \node(0,0) (\JVM 19) {}; & \\
    & \node(0,0) (\FIDE 20) {}; &[5.0ex] \node(0,0) (\FIDESEDE 20) {}; &[5.0ex] \node(0,0) (\SEDE 20) {}; &[11ex] \node(0,0) (\SEDEPRO 20) {}; &[11ex] \node(0,0) (\PRO 20) {}; &[11.5ex] \node(0,0) (\PROJVM 20) {}; &[11.5ex] \node(0,0) (\JVM 20) {}; & \\
    & \node(0,0) (\FIDE 21) {}; &[5.0ex] \node(0,0) (\FIDESEDE 21) {}; &[5.0ex] \node(0,0) (\SEDE 21) {}; &[11ex] \node(0,0) (\SEDEPRO 21) {}; &[11ex] \node(0,0) (\PRO 21) {}; &[11.5ex] \node(0,0) (\PROJVM 21) {}; &[11.5ex] \node(0,0) (\JVM 21) {}; & \\
-   & \node(0,0) (\FIDE 22) {}; &[5.0ex] \node(0,0) (\FIDESEDE 22) {}; &[5.0ex] \node(0,0) (\SEDE 22) {}; &[11ex] \node(0,0) (\SEDEPRO 22) {}; &[11ex] \node(0,0) (\PRO 22) {}; &[11.5ex] \node(0,0) (\PROJVM 22) {}; &[11.5ex] \node(0,0) (\JVM 22) {}; & \\
   };
 
   \fill
@@ -46,29 +45,29 @@
   ;
 
   \draw
-    (\FIDE22)
+    (\FIDE 21)
        node[draw,isosceles triangle, fill=black, rotate=-90]
         (\FIDE FIDEtime) {}
        node[below right] {$t$}
-    (\SEDE22)
+    (\SEDE 21)
        node[draw,isosceles triangle, fill=black, rotate=-90]
         (\SEDE SEDEtime) {}
        node[below right] {$t$}
-    (\PRO22)
+    (\PRO 21)
        node[draw,isosceles triangle, fill=black, rotate=-90]
         (\PRO PROtime) {}
        node[below right] {$t$}
-    (\JVM22)
+    (\JVM 21)
        node[draw,isosceles triangle, fill=black, rotate=-90]
         (\JVM JVMtime) {}
        node[below right] {$t$}
   ;
 
   \draw[dashed]
-    (\FIDE 0) -- (\FIDE 22)
-    (\SEDE 0) -- (\SEDE 22)
-    (\PRO 0) -- (\PRO 22)
-    (\JVM 0) -- (\JVM 22)
+    (\FIDE 0) -- (\FIDE 21)
+    (\SEDE 0) -- (\SEDE 21)
+    (\PRO 0) -- (\PRO 21)
+    (\JVM 0) -- (\JVM 21)
   ;
 
   \filldraw[fill=red!20]
@@ -84,7 +83,7 @@
   (\SEDE 8.north west) rectangle (\SEDE 10.south east);
 
   \filldraw[fill=black!20]
-  (\PRO 7.north west) rectangle (\PRO 10.south east);
+  (\PRO 8.north west) rectangle (\PRO 10.south east);
 
   \filldraw[fill=blue!20]
   (\FIDE 12.north west) rectangle (\FIDE 14.south east);
@@ -173,4 +172,6 @@
       node[, above=-0.1cm, text=black] {Resume reply};
 
 \end{tikzpicture}
+\captionof{figure}{\it{Illustration of proxy server manipulating suspend and resume commands.}}
+
 \end{document}
