@@ -189,6 +189,12 @@
 \usetikzlibrary{shapes, arrows, chains, scopes, positioning, arrows, fit}
 \usepackage{caption}
 
+\captionsetup{%
+  justification=raggedright, 
+  singlelinecheck=false,
+  format=plain
+}
+
 % table
 \usepackage{multirow}
 
