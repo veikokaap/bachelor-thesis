@@ -137,6 +137,7 @@
 
 \definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}
 
+% Source: https://github.com/cansik/kotlin-latex-listing
 \lstdefinelanguage{Kotlin}{
   keywords={package, as, as?, typealias, this, super, val, var, fun, for, null, true, false, is, in, throw, return, break, continue, object, if, try, else, while, do, when, class, interface, enum, object, companion, override, public, private, get, set, import, abstract, vararg, expect, actual, where, suspend, data, internal, dynamic, final, by},
   keywordstyle=\color{blue}\bfseries,
