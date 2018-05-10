@@ -47,9 +47,9 @@ public class SimpleBreakpointClass {
 
 The code listing \ref{lst:testkot} shows how the breakpoints are set and output asserted using the test framework and the listing \ref{lst:testjava} shows the class that is executed by the JVM.
 
-Below is an example of a unit test from the proxy server.
+Below, in listing \ref{lst:unittest}, is an example of a unit test from the proxy server.
 
-\begin{lstlisting}[language=Java, caption={\textit{A unit test testing whether reading and writing a data field of a particular JVM event returns identical bytes to the original event.}}, captionpos=b]
+\begin{lstlisting}[language=Java, caption={\textit{A unit test testing whether reading and writing a data field of a particular JVM event returns identical bytes to the original event.}}, captionpos=b, label={lst:unittest}]
 public class FieldAccessEventTest extends EventTestBase {
   @Test
   public void testReadAndWriteEqualsOriginalEvent() throws ReflectiveOperationException {
