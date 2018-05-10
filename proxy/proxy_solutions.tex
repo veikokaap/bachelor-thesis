@@ -12,7 +12,7 @@ Working in this layer, however, would mean creating a new native agent which wou
 Simply taking the existing native agent and modifying it isn't an option, since this agent might differ between different JVM vendors and might change with each JVM release.
 Also, since it's a native agent, then it would need to be built for each supported platform making its distribution and usage more difficult.
 
-Another possibility is to use JDI which currently only supports being the front-end of JDWP and so acts as the debugger.
+Another possibility is to use JDI, but that currently only supports being the front-end of JDWP and so acts as the debugger.
 That means all of its logic is written for connecting and communicating with the JVM, but it has no code for being the back-end for another debugger.
 Also, since it's meant to be the most accessible layer of JPDA, then it hides quite a lot of the connection details and packets to make the usage simpler.
 While it is possible to access and use the implementation code which is aware of all these details, it's made a lot more difficult by the introduction of the Module system in Java 9.

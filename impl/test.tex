@@ -10,13 +10,12 @@ It will also start the proxy server which is attached to the JVM and starts one 
 After that, the test framework will allow the developer to add breakpoints, run code when breakpoints are hit and suspend/resume the JVM through both debuggers.
 The test written using this framework can assert that the proxy server will behave correctly when manipulating the execution of the JVM with two concurrent debuggers.
 
-\begin{lstlisting}[language=Kotlin]
+\begin{lstlisting}[language=Kotlin, caption={\textit{Example of an integration test adding breakpoints and asserting JVM output.}}, captionpos=b, label={lst:testkot}]
 val testClass = SimpleBreakpointClass::class.java
 val firstLocation = BreakpointUtil.findBreakLocation(testClass, 0)
 val secondLocation = BreakpointUtil.findBreakLocation(testClass, 1)
 
-@Test
-fun `test single breakpoint with 2 debuggers`() = 
+@Test fun `test single breakpoint with 2 debuggers`() = 
   runTest(testClass) { jvm, firstDebugger, secondDebugger ->
     val firstBreak = firstDebugger.breakAt(firstLocation) {
       jvm.outputDeque.assertAddedOutput("Before breakpoints")
@@ -28,15 +27,13 @@ fun `test single breakpoint with 2 debuggers`() =
     } thenResume {}
 
     firstDebugger.allBreakpointSet()
-
     secondBreak.joinAndTest()
     jvm.waitForExit()
-
     jvm.outputDeque.assertAddedOutput("After breakpoint 0", "After breakpoint 1")
 }
 \end{lstlisting}
 
-\begin{lstlisting}[language=Java]
+\begin{lstlisting}[language=Java, caption={\textit{Test class being executed on the forked JVM.}}, captionpos=b, label={lst:testjava}]
 public class SimpleBreakpointClass {
   public static void main(String[] args) {
     System.out.println("Before breakpoints");
@@ -48,13 +45,11 @@ public class SimpleBreakpointClass {
 }
 \end{lstlisting}
 
-The first code snippet above shows how the breakpoints are set and output asserted using the test framework and the second code snippet shows the class that is executed by the JVM.
+The code listing \ref{lst:testkot} shows how the breakpoints are set and output asserted using the test framework and the listing \ref{lst:testjava} shows the class that is executed by the JVM.
 
 Below is an example of a unit test from the proxy server.
 
-\clearpage
-
-\begin{lstlisting}[language=Java]
+\begin{lstlisting}[language=Java, caption={\textit{A unit test testing whether reading and writing a data field of a particular JVM event returns identical bytes to the original event.}}, captionpos=b]
 public class FieldAccessEventTest extends EventTestBase {
   @Test
   public void testReadAndWriteEqualsOriginalEvent() throws ReflectiveOperationException {

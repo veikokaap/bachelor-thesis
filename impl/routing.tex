@@ -35,7 +35,7 @@ One debugger can specify that the whole JVM should suspend when a breakpoint is 
 Due to these difficulties, each event request is parsed by the proxy server and cached to later know which debugger requested which events.
 When JVM sends events to the proxy server, then these events are split accordingly and each debugger receives only the events it requested.
 
-\begin{lstlisting}[language=Java]
+\begin{lstlisting}[language=Java, caption={\textit{Methods for sending only the requested events to a debugger.}}, captionpos=b, label={lst:routing}]
 private void sendEventsToSource(PacketSource source, CompositeEventCommand command) {
   List<VirtualMachineEvent> events = command.getEvents().stream()
       .filter(event -> isEventRequestedBySource(source, event))
@@ -53,8 +53,7 @@ private void sendEventsToSource(PacketSource source, CompositeEventCommand comma
       )
   );
 }
-\end{lstlisting}
-\begin{lstlisting}[language=Java]
+
 private boolean isEventRequestedBySource(PacketSource source, VirtualMachineEvent event){
   if (event instanceof VmStartEvent || event instanceof VmDeathEvent) {
     return true;
@@ -69,8 +68,8 @@ private boolean isEventRequestedBySource(PacketSource source, VirtualMachineEven
 }
 \end{lstlisting}
 
-In the above code snippets, the \inlinecode{CompositeEventCommand} object has been parsed from a command packet received from the JVM.
-The command is then split into a separate command for each debugger with only the events which have it has requested.
+In the code listing \ref{lst:routing}, the \inlinecode{CompositeEventCommand} object has been parsed from a command packet received from the JVM.
+The command is then split into a separate command for each debugger with only the events which it has requested.
 The JVM start and death events are always sent to each debugger as according to the JDWP specification. \cite{oracle_jdwp_spec}
 
 \end{document}

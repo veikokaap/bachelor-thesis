@@ -18,26 +18,32 @@ When more debuggers are connected, then the possible number of values will decre
 
 As can be seen from the above graph, both debuggers send out a command packet with an identical id and later receive a reply with the same id, but the JVM will receive two different ids and regard them as completely different packets.
 
-\begin{lstlisting}[language=java]
+\begin{lstlisting}[language=java, caption={\textit{Visitor methods for processing the ids of received and written debugger packets.}}, captionpos=b, label={lst:id}]
 public Packet visit(CommandPacket packet) {
   // Generate new id to ensure every packet reaching vm has a unique id
   // This also makes it easy to later connect reply and command packets and avoid collision
   int newId = getNewId(packet.getId());
   return new CommandPacket(
     newId,
-    packet.getCommandSetId(), packet.getCommandId(), packet.getData(), packet.getSource()
+    packet.getCommandSetId(), 
+    packet.getCommandId(), 
+    packet.getData(), 
+    packet.getSource()
   );
 }
+
 public Packet visit(ReplyPacket packet) {
   // Restore original id
   int originalId = getOriginalId(packet.getId());
   return new ReplyPacket(
     originalId,
-    packet.getErrorCode(), packet.getData(), packet.getSource()
+    packet.getErrorCode(), 
+    packet.getData(), 
+    packet.getSource()
   );
 }
 \end{lstlisting}
 
-The \inlinecode{visit} methods from above code snippet are responsible for creating a changed id for received command packet and restoring the original id of the reply packet.
+The \inlinecode{visit} methods from the code listing \ref{lst:id} are responsible for creating a changed id for received command packet and restoring the original id of the reply packet.
 
 \end{document}

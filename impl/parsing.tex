@@ -3,7 +3,7 @@
 
 \begin{document}
 
-Since the packets received from the JVM or debuggers is just a sequence of bytes, then it is necessary to parse them before they can be further processed.
+Since the packets received from the JVM or debuggers is just a sequence of bytes, then it is necessary to parse them before they can be processed further.
 The header of a packet is quite easy to parse since it's always 11 bytes and can only be either a reply or a command packet.
 The data bytes of a packet, however, are different for each command and reply packet.
 
@@ -15,35 +15,46 @@ Due to this, the command packet field values are remembered until a reply has be
 Using the command set and command field values, it is possible to identify the correct command and the type of fields it has in its data bytes.
 Each command requires explicitly writing a parser method for it to make the bytes into a useable format.
 
-\begin{lstlisting}[language=java]
-public EventKind getEventKind() {
-  return EventKind.BREAKPOINT;
-}
+\begin{lstlisting}[language=java, caption={\textit{Breakpoint event representation as a class with read and write methods for reading and writing the bytes for the packet data field.}},captionpos=b, label={lst:parsing}]
+@AutoValue
+public abstract class BreakPointEvent extends VirtualMachineEvent {
+  public abstract int getRequestId();
+  public abstract ThreadId getThread();
+  public abstract Location getLocation();
 
-public static BreakPointEvent read(DataReader reader) {
-  return create(
-      reader.readInt(),
-      ThreadId.read(reader),
-      Location.read(reader)
-  );
-}
+  public EventKind getEventKind() {
+    return EventKind.BREAKPOINT;
+  }
 
-public void write(DataWriter writer) {
-  writer.writeType(getEventKind());
-  writer.writeInt(getRequestId());
-  writer.writeType(getThread());
-  writer.writeType(getLocation());
+  public static BreakPointEvent create(int requestId, ThreadId thread, Location location) {
+    return new AutoValue_BreakPointEvent(requestId, thread, location);
+  }
+
+  public static BreakPointEvent read(DataReader reader) {
+    return create(
+        reader.readInt(),
+        ThreadId.read(reader),
+        Location.read(reader)
+    );
+  }
+
+  public void write(DataWriter writer) {
+    writer.writeType(getEventKind());
+    writer.writeInt(getRequestId());
+    writer.writeType(getThread());
+    writer.writeType(getLocation());
+  }
 }
 \end{lstlisting}
 
-The above code snippet shows how the bytes are parsed for reading for a breakpoint event in the method \inlinecode{read} and how the parsed data is processed back into bytes in method \inlinecode{write}.
+The code listing \ref{lst:parsing} shows how the bytes are parsed for reading for a breakpoint event in the method \inlinecode{read} and how the parsed data is processed back into bytes in method \inlinecode{write}.
 Helper classes \inlinecode{DataReader} and \inlinecode{DataWriter} are used to make parsing and writing simpler and less error-prone.
 The meaning of fields for parsing is taken from Oracle documentation on JDWP: \url{https://docs.oracle.com/javase/10/docs/specs/jdwp/jdwp-protocol.html} 
 
 One detail that makes parsing the data field more difficult is the fact that the subfields used in the data field can have variable size depending on the JVM.
 For example, a ThreadId type of field might take 8 bytes on one JVM, but 5 bytes on another.
 It is only specified in the JDWP specification that the upper limit for such types is 8 bytes.
-So in order to find the correct size of these types, the proxy server will catch the "Id Sizes" reply packet and read from there what length in bytes the subfields should have.
+So in order to find the correct size of these types, the proxy server will catch the \inlinecode{IdSizes} reply packet and read from there what length in bytes the subfields should have.
 
 
 \end{document}
