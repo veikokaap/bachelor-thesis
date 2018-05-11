@@ -204,3 +204,7 @@
 % lists and stuff
 \usepackage{enumitem}
 
+% quotation marks
+\usepackage{csquotes}
+\MakeOuterQuote{"}
+

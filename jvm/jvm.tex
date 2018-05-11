@@ -3,8 +3,8 @@
 
 \begin{document}
 
-Java Virtual Machine (JVM) is an abstract computing machine which has an instruction set and which manipulates various memory areas at run time.\cite{oracle_jvm_spec}
-It specifies the class file format which "contains Java Virtual Machine instructions (or \textit{bytecodes}) and a symbol table, as well as other ancillary information"\cite{oracle_jvm_spec}.
+Java Virtual Machine (JVM) is an abstract computing machine which has an instruction set and which manipulates various memory areas at run time. %piisab lõigu lõpus viidata.
+It specifies the class file format which \enquote{contains Java Virtual Machine instructions (or \textit{bytecodes}) and a symbol table, as well as other ancillary information}~\cite{oracle_jvm_spec}.
 
 Despite the name of the virtual machine, JVM is not only limited to the Java language. 
 The fact that the JVM only runs code represented by the class file format allows the virtual machine to be used by multiple different languages.
@@ -12,24 +12,24 @@ If anybody wants to run a specific language on the JVM, all they have to do is c
 
 There are many advantages to using the JVM instead of implementing your own virtual machine or platform:
 
-\begin{itemize}
-  \item Platform independence - 
+\begin{description}
+  \item[Platform independence.]
     The JVM is designed to adhere to the idea of writing once and running anywhere. 
     All the language developer has to do is to compile the code to a class file and after that, the program will run in the same manner on all the platforms which the JVM supports.
-  \item Security - 
-    The JVM has built-in security features which prevent malicious software from compromising the Operating System(OS). 
-  \item Optimization - 
+  \item[Security.] 
+    The JVM has built-in security features which prevent malicious software from compromising the Operating System (OS). 
+  \item[Optimization.] 
     The JVM can take unoptimized class files and optimize them to run faster and consume less memory. 
     That means the language developer doesn't need to worry about optimization, but can instead leave that task to the JVM.
     This has the effect of making the compiler faster and less complex while at the same time avoiding bugs in the compiler.
-  \item Tooling support -
+  \item[Tooling support.]
     There are many tools written for the JVM consisting of productivity tools, profilers, application performance management tools (APMs), application servers and libraries. 
     Any language targeting the JVM class file will also be able to use and take advantage of these tools.
-  \item Debugging - 
+  \item[Debugging.]
     Any debugger architecture or tool written for the JVM can be used to debug any JVM language.
-\end{itemize}
+\end{description}
 
-For the present thesis, the last item is the most important - the problem being solved exists in the JVM and so affects all the JVM languages. 
-The solution provided in this thesis will solve the problem for the JVM, so it's not only limited to the Java language but for any language targeting the JVM (e.g. Groovy, Kotlin, Scala).
+For the present thesis, the last item is the most important --- the problem being solved exists in the JVM and so affects all the JVM languages. 
+The solution provided in this thesis will solve the problem for the JVM, so it's not only limited to the Java language but for any language targeting the JVM (e.g., Groovy, Kotlin, Scala).
 
 \end{document}

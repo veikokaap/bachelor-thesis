@@ -3,21 +3,27 @@
 
 \begin{document}
 
-When any of these tests have an unexpected outcome or a problem occurs in a production environment, then the developer will need to investigate and understand which part of the program leads to the issue or caused the error.
+When any of these tests have an unexpected outcome or a problem occurs in a production environment, the developer will need to investigate and understand which part of the program leads to the issue or caused the error.
 The developer has multiple options on how to determine the faulty part:
 \begin{itemize}
-  \item Read and examine the code in order to find the problematic code
-  \item Change code in random places which seem like they might be connected to the issue and see if the outcome becomes correct
-  \item Insert logging statements to print out intermediate values in the code and after rerunning the program see if and where the values differ from the expected.
+  \item Read and examine the code in order to find the problematic code.
+  \item Change code in random places that seem connected to the issue and see if the outcome becomes correct.
+  \item Insert logging statements in the code to print intermediate values, and after rerunning the program, see if and where the values differ from the expected.
   \item Use a debugger to interactively control and monitor the program execution.
 \end{itemize}
 
 In most cases, using an interactive debugger is the easiest and most efficient choice. 
 A debugger is a software which allows the developer to monitor and control the execution of the program.
+% * <vesal.vojdani@gmail.com> 2018-05-11T08:08:07.262Z:
+% 
+% > which
+% Sa kasutad liiga palju "which", kui tegelikult iga mõistlik inimine kasutaks "that". Loe selle kohta põhjalikumalt, näiteks siin: http://blog.apastyle.org/apastyle/2012/01/that-versus-which.html
+% 
+% ^.
 It gives the developer the functionality to suspend or resume the execution at any time and to evaluate and inspect the program state while the program is running. 
 
-Most debuggers are made to work best when they have access to the source code of the program. 
-Then the debugger can provide the developer with the functionality to change variable values in the program but to also set breakpoints to certain lines in the code. 
+Most debuggers work best when they have access to the source code of the program. 
+Then the debugger can provide the developer with the functionality to change variable values in the program and set breakpoints at certain lines in the code. 
 Breakpoints are markers which tell the debugger when to suspend the execution of the program and to give the control of the execution to the developer.
 
 The main benefit of using a debugger instead of simply adding logging statements is the ability to start debugging immediately without the need for knowledge of where the fault might be.
