@@ -4,7 +4,7 @@
 \begin{document}
 
 The connection between the proxy server and the JVM and between the proxy server and debuggers is similar, but not identical.
-JPDA specifies that after a connection is established between JVM and a debugger, then the debugger sends a handshake consisting of ASCII string "JDWP-Handshake" to the JVM and the JVM sends back the same string.
+JPDA specifies that after a connection is established between JVM and a debugger, the debugger sends a handshake consisting of ASCII string "JDWP-Handshake" to the JVM and the JVM sends back the same string.
 After the connection is established and the handshake is finished, then JVM stops allowing new connections to that socket until the debugger is disconnected.
 
 The proxy server behaves in a similar fashion, first connecting to the JVM and sending to it the handshake bytes and waiting for the bytes to be sent back.
@@ -18,7 +18,7 @@ Because the JVM has already specified a port on which to connect to the debugger
 
 \subfile{./graphs/handshake-proxy.tex}
 
-Figure \ref{graph:handshake-proxy} above illustrates how the connection works on different ports for the debuggers and the JVM.
+Figure~\ref{graph:handshake-proxy} illustrates how the connection works on different ports for the debuggers and the JVM.
 In that figure the JVM is using port 5005 for listening to debugger connections, but the proxy server exposes port 6006 for other debuggers to connect to.
 The debuggers themselves have to connect to the proxy port since the JVM port won't accept any more connections due to the proxy server already being connected to it.
 The graphic shows clearly how for the JVM, the proxy server starts the handshake, but for the debuggers, it simply replies to the handshake.

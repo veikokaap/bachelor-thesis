@@ -5,7 +5,7 @@
 
 JVM TI is a native interface implemented by the Virtual Machine which serves as the back-end for JDWP.
 It is responsible for the services a VM must provide for debugging.
-That includes different requests for information about the debuggee, but also actions the VM should take and notifications sent to the debugger~\cite{oracle_jpda_jvmti}.
+That includes different requests for information about the JVM, but also actions the JVM should take and notifications sent to the debugger~\cite{oracle_jpda_jvmti}.
 
 JVM TI is the lowest level layer in the JPDA. 
 It provides the most direct access to the JVM, but that comes at the cost of portability --- due to being a native interface, it requires to be built separately for each platform.

@@ -4,7 +4,7 @@
 \begin{document}
 
 Since there is no support from the JVM to connect multiple debuggers simultaneously, then writing a custom solution is required. 
-JPDA is multi-tiered, as described in section \ref{sec:jpda}, then this thesis will consider all three layers of the architecture when solving the problem.
+JPDA is multi-tiered, as described in Section~\ref{sec:jpda}, so this thesis will consider all three layers of the architecture when solving the problem.
 For each layer, there is a different approach on how to solve the limitation.
 
 Starting with the JVM TI, at first, this might seem like the most promising layer for allowing multiple debuggers since it is in this layer where the connection with the debugger is done.
@@ -21,7 +21,7 @@ The last layer to look at for the solution is the transport protocol JDWP which 
 This layer doesn't have any code to reuse since it's simply a description of how the other layers of JPDA should communicate, but it is the simplest place where to solve the problem for numerous reasons.
 First of all, a solution in transport layer wouldn't set any restrictions on how the front-end and back-end of the debugger platform are implemented.
 The other layers can remain completely oblivious to the fact that there is something going on between them.
-This would solve the problem of having to support multiple JVM vendors and platforms or letting a developer use a front-end other than JDI.
+This would solve the problem of having to support multiple JVM vendors and platforms or letting a developer use a front end other than JDI.
 Secondly, JDWP is backwards compatible, so that the solution created will keep working even with newer versions of JVM.
 
 The idea is to create a proxy server for the JDWP which would connect to the JVM as a debugger and then let multiple debuggers connect to it.
@@ -32,8 +32,8 @@ Thanks to that, most of the development time for the proxy server can be focused
 
 \subfile{./graphs/jpda-proxy.tex}
 
-The figure \ref{graph:jpda-proxy} above illustrates how the JPDA should function with a JDWP proxy server in use.
+Figure~\ref{graph:jpda-proxy} illustrates how the JPDA should function with a JDWP proxy server in use.
 The proxy server will intercept the connection between the JVM and the debuggers and start passing and modifying sent packets.
-In the following section, we'll walk through implementing, running and testing the JDWP proxy server.
+In the following section, we'll walk through the implementing, running and testing of the JDWP proxy server.
 
 \end{document}

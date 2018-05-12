@@ -4,9 +4,10 @@
 \begin{document}
 
 This section will describe the need for a proxy server for JDWP.
-More general use cases for using multiple debuggers in parallel were described in section \ref{sec:debugging_usecases}, but this section will focus in more detail on specific use cases unique for JPDA.
+More general use cases for using multiple debuggers in parallel were described in Section~\ref{sec:debugging_usecases}, 
+but this section will focus in more detail on specific use cases unique for JPDA.
 
-The JVM has a support for tools called Java agents which use application programming interfaces (APIs) provided by the JVM to instrument programs running on the JVM.
+The JVM has support for tools called Java agents which use application programming interfaces (APIs) provided by the JVM to instrument programs running on the JVM.
 These APIs give JVM tool creators extensive functionality for creating simple to use agents which can be used for solving many problems.
 Agents can be used for monitoring performance, exceptions, logging or even to add previously unavailable features to the JVM, like reloading code at runtime.
 
@@ -16,7 +17,7 @@ It doesn't, however, make much sense to have the running application and the age
 In such case, being able to write both projects in different workspaces but to debug both of them at the same time is crucial.
 
 Similarly, any application framework which allows the creation of plugins can benefit from being able to attach multiple debuggers.
-For example, most IDEs are designed so that the all the supported languages and special features are not part of the core code base, but instead available as plugins. 
+For example, most IDEs are designed so that all the supported languages and special features are not part of the core code base, but instead available as plugins. 
 Such approach has many benefits including making the main code base smaller and easier to maintain.
 It also creates a clear separation between what the IDE should do and what each plugin does and makes it easier to later add new functionality by implementing a new plugin.
 Since separation is so important in such cases, then it makes sense to develop all plugins in separate workspaces.
