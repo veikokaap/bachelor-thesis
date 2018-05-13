@@ -3,22 +3,28 @@
 
 \begin{document}
 
-Java Virtual Machine (JVM) is an abstract computing machine which has an instruction set and which manipulates various memory areas at run time.\cite{oracle_jvm_spec}
 % * <vesal.vojdani@gmail.com> 2018-05-11T07:39:14.812Z:
 % 
 % See esimene lause on päris häiriv... võib-olla pigem alustada, et "The Java platform provides not only a highly performant abstract computing machine, the Java Virtual Machine (JVM), but also contains sophisticated tools for interfacing with running applications. This functionality is specified in the Java Platform Debugger Architecture (JPDA)."  Igatahes, võiks oma töö avalõigu üle natuke enne esitamist obsessiivselt redigeerida. Siiski esmamulje loeb.
 % 
 % ^.
-One of the important parts which makes the JVM a popular platform for creating new programming languages is its built-in debugging functionality. 
-This functionality comes from the Java Platform Debugger Architecture, also known as JPDA, which is a widely used toolkit for Java and other JVM languages development.
+
+The Java platform provides not only a highly performant abstract computing machine, the Java Virtual Machine (JVM), but also contains sophisticated tools for interfacing with running applications. 
+This functionality is specified in the Java Platform Debugger Architecture (JPDA), which is a widely used toolkit for Java and other JVM languages development.
 
 While the JPDA provides extensive tools for debugging any application running on the JVM, it has the limitations of only accepting a single connection between the debugger and the JVM. 
-It's not currently possible to attach multiple debuggers to a single JVM.
+It's not currently possible to attach multiple debuggers to a single JVM and that makes many debugging workflows and use cases impossible to accomplish.
+
+One important use case which is impossible to handle currently using JPDA is a situation where an application running on a single JVM consists from multiple modules developed on separate remote machines by different developers.
+When problems occur in the application work, it is necessary to monitor and control the application execution for all the modules.
+Due to them being developed on separate machines, however, it's impossible to attach a debugger to the JVM from each machine at the same time. 
 
 The purpose of this paper is to get rid of this limitation by creating a proxy server which would connect to the JVM and then allow multiple debuggers to connect to it. 
-Such proxy server would allow the use of multiple different IDEs (Integrated Development Environment) while debugging. 
-It would also enable to debug the JVM from multiple remote computers at the same time. 
-While there are workarounds for this limitation, none of them provides a convenient single solution for every aspect of the limitation. 
+Such proxy server would allow to debug the JVM from multiple remote computers at the same time.  
+It would also enable the use of multiple different IDEs (Integrated Development Environment) while debugging. 
+
+Currently no alternative solution exists to solve this limitation.
+This is mainly due to the fact that the creation of such a proxy server is quite complex and requires specially handling most of the functionality the JPDA platform provides.
 
 The development of the program has two main priorities. 
 First priority is that if only a single debugger is connected to the proxy server, then the behaviour of the proxy server should be identical to a situation where the debugger is connected straight to the JVM.
