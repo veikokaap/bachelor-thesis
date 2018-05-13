@@ -8,23 +8,24 @@
 \tikzstyle{output} = [coordinate]
 \tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
 
-  \begin{tikzpicture}[auto, node distance=2cm,>=latex',
-    every matrix/.style={ampersand replacement=\&,column sep=2.5cm,row sep=1cm},
-    source/.style={draw,fill=yellow!10,inner sep=.3cm, minimum width=8em},
-    thread/.style={draw,circle,fill=blue!20},
-    processor/.style={source,fill=gray!3},
-    dots/.style={gray,scale=2},
-    to/.style={->,>=stealth',semithick},
-    fromto/.style={<->,>=stealth'},
-    every node/.style={align=center}]
-    % Styles
-    \tikzset{blue dotted/.style={draw=blue!50!white, line width=1pt,
+
+    \begin{tikzpicture}[auto, node distance=2cm,>=latex',
+      every matrix/.style={ampersand replacement=\&,column sep=1.8cm,row sep=1cm},
+      source/.style={draw,fill=yellow!10,inner sep=.3cm, minimum width=8em},
+      thread/.style={draw,circle,fill=blue!20},
+      processor/.style={source,fill=gray!3},
+      dots/.style={gray,scale=2},
+      to/.style={->,>=stealth',semithick},
+      fromto/.style={<->,>=stealth'},
+      every node/.style={align=center}]
+      % Styles
+      \tikzset{blue dotted/.style={draw=blue!50!white, line width=1pt,
                                dash pattern=on 1pt off 4pt on 6pt off 4pt,
                                 inner sep=4mm, rectangle, rounded corners}};
 
 
-    \matrix{
-      \node[source] (jvm) {JVM};
+      \matrix{
+        \node[source] (jvm) {JVM};
       \& 
       \& \node[source] (debs) {Debuggers}; \& \\
 
@@ -38,24 +39,25 @@
     };
 
     % Draw the arrows between the nodes and label them.
-    \draw[fromto] (jvm) -| node[midway,above] {Incoming/outgoing packets}(iothread);
-    \draw[fromto] (debs) -| node[midway,right] {}(iothread);
+      \draw[fromto] (jvm) -| node[midway,above] {Incoming/outgoing packets}(iothread);
+      \draw[fromto] (debs) -| node[midway,right] {}(iothread);
 
-    \draw[to] (iothread) -- node[midway,above] {Push} (readqueue);
-    \draw[to] (readqueue) --
+      \draw[to] (iothread) -- node[midway,above] {Push} (readqueue);
+      \draw[to] (readqueue) --
       node[midway,left] {Pop} (parsing);
-    \draw[to] (parsing) -- node[midway,above] {} (id);
-    \draw[to] (id) -- node[midway,above] {} (routing);
-    
-    \draw[to] (routing) -- node[midway,right] {Push} (writequeue);
-    \draw[to] (writequeue) -- node[midway,above] {Pop} (iothread);
+      \draw[to] (parsing) -- node[midway,above] {} (id);
+      \draw[to] (id) -- node[midway,above] {} (routing);
 
-    \node (proxy box) [blue dotted, fit = (readqueue) (iothread) (writequeue) (id) (parsing) (routing)] {};
-    \node at (proxy box.south) [below, inner sep=3mm] {\textbf{JDWP proxy server}};
+      \draw[to] (routing) -- node[midway,right] {Push} (writequeue);
+      \draw[to] (writequeue) -- node[midway,above] {Pop} (iothread);
+
+      \node (proxy box) [blue dotted, fit = (readqueue) (iothread) (writequeue) (id) (parsing) (routing)] {};
+      \node at (proxy box.south) [below, inner sep=3mm] {\textbf{JDWP proxy server}};
 
 
-  \end{tikzpicture}
-  \captionof{figure}{\it{Graphical representation of the JDWP proxy server logic.}}
-  \label{graph:io}
+    \end{tikzpicture}
+    \captionof{figure}{\it{Graphical representation of the JDWP proxy server logic.}}
+    \label{graph:io}
+
 
 \end{document}

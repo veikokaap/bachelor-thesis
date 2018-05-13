@@ -33,7 +33,7 @@
     \node[block, right of=jdwp-agent, node distance=21em, fill=black!15] (proxy) {Proxy Server};
 
     % Debugger 1
-    \node [block, above of=proxy, node distance=6em] (jdi) {Java Debug Interface};
+    \node [block, above of=proxy, node distance=5.75em] (jdi) {Java Debug Interface};
     \node [block, above of=jdi, node distance=3em] (debugger) {Debugger application};
 
     \draw [-] (jdi) -- node {} (debugger);
@@ -42,7 +42,7 @@
     \node at (debugger box.north) [above, inner sep=3mm] {\textbf{Debugger 1}};
     
     % Debugger 2
-    \node [block, below of=proxy, node distance=6em] (jdi2) {Java Debug Interface};
+    \node [block, below of=proxy, node distance=5.75em] (jdi2) {Java Debug Interface};
     \node [block, below of=jdi2, node distance=3em] (debugger2) {Debugger application};
 
     \draw [-] (jdi2) -- node {} (debugger2);
