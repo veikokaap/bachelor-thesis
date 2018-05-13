@@ -15,7 +15,8 @@ Also, since it's a native agent, then it would need to be built for each support
 Another possibility is to use JDI, but that currently only supports being the front-end of JDWP and so acts as the debugger.
 That means all of its logic is written for connecting and communicating with the JVM, but it has no code for being the back-end for another debugger.
 Also, since it's meant to be the most accessible layer of JPDA, then it hides quite a lot of the connection details and packets to make the usage simpler.
-While it is possible to access and use the implementation code which is aware of all these details, it's made a lot more difficult by the introduction of the Module system in Java 9.
+While it is possible to access and use the implementation code which is aware of all these details, it's made a lot more difficult and in some cases even impossible by the introduction of the Module system in Java 9.
+Since the solution should be backwards compatible with newer Java versions, then supporting the Module system is important and its limitations must be taken into account. 
 
 The last layer to look at for the solution is the transport protocol JDWP which is used for communication between the front-end and back-end of the JPDA.
 This layer doesn't have any code to reuse since it's simply a description of how the other layers of JPDA should communicate, but it is the simplest place where to solve the problem for numerous reasons.
