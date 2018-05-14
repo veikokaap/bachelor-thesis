@@ -9,7 +9,7 @@ That thread waits until any stream from debugger or JVM is ready for writing or 
 If there is something to be read from the stream, then the packet bytes are read and then the packet is added to a read queue.
 For writing to the streams, there is a write queue for each stream and if there is anything in that queue, then it is written to the stream.
 These queues are used for avoiding concurrency problems with other threads.
-Other threads don't have a direct access to the streams, but most instead get all the read packets from the read queue and if they wish to write something to a stream, then they'll add it to the write queue.
+Other threads don't have a direct access to the streams, but must instead get all the read packets from the read queue and if they wish to write something to a stream, then they'll add it to the write queue.
 
 \subfile{./graphs/io.tex}
 

@@ -16,7 +16,7 @@ When more debuggers are connected, then the possible number of values will decre
 
 \subfile{./graphs/id.tex}
 
-As can be seen from the figure \ref{graph:id} above, both debuggers send out a command packet with an identical id and later receive a reply with the same id, but the JVM will receive two different ids and regard them as completely different packets.
+As can be seen from figure \ref{graph:id}, both debuggers send out a command packet with an identical id and later receive a reply with the same id, but the JVM will receive two different ids and regard them as completely different packets.
 
 \begin{lstlisting}[language=java, caption={\textit{Visitor methods for processing the ids of received and written debugger packets.}}, captionpos=b, label={lst:id}]
 public Packet visit(CommandPacket packet) {

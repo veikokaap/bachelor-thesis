@@ -4,7 +4,7 @@
 \begin{document}
 
 The connection between the proxy server and the JVM and between the proxy server and debuggers is similar, but not identical.
-JPDA specifies that after a connection is established between JVM and a debugger, the debugger sends a handshake consisting of ASCII string "JDWP-Handshake" to the JVM and the JVM sends back the same string.
+JPDA specifies that after a connection is established between JVM and a debugger, the debugger sends a handshake consisting of ASCII string \enquote{JDWP-Handshake} to the JVM and the JVM sends back the same string.
 After the connection is established and the handshake is finished, then JVM stops allowing new connections to that socket until the debugger is disconnected.
 
 The proxy server behaves in a similar fashion, first connecting to the JVM and sending to it the handshake bytes and waiting for the bytes to be sent back.

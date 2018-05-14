@@ -13,8 +13,8 @@ Handshake consists of debugger sending 14 bytes of ASCII characters of the strin
 JDWP is packet based and is not stateful. In JDWP there exist two types of packets: command packets and reply packets.
 The JDWP is asynchronous so it is possible to send multiple command packets before a reply is received for the first command.
 
-Both the target VM and the debugger can send command packets. For the debugger, they're used to "request information from the target VM, or to control program execution."
-The target VM sends them to "notify the debugger of some event in the target VM such as a breakpoint or exception."\cite{oracle_jdwp_spec}
+Both the target VM and the debugger can send command packets. For the debugger, they're used to \enquote{request information from the target VM, or to control program execution.}
+The target VM sends them to \enquote{notify the debugger of some event in the target VM such as a breakpoint or exception.}~\cite{oracle_jdwp_spec}
 
 A reply packet is sent as a response to the command packet and provides information whether the command was a success or failure. The reply packet can also return a value or data requested by the command packet. In the current version of the protocol, events that are sent from the target VM do not require a response or a reply packet from the debugger.\cite{oracle_jdwp_spec}
 
@@ -46,13 +46,13 @@ The layout of the reply packet is the following:
 The length field in the packet represents the size of the entire packet in bytes. 
 Since the header size is always 11 bytes, then no packet can have a size less than 11 bytes.
 A packet which contains no data has a size of 11 bytes.
-The id field of the packet is used to "uniquely identify each packet command/reply pair."\cite{oracle_jdwp_spec}
+The id field of the packet is used to \enquote{uniquely identify each packet command/reply pair.}~\cite{oracle_jdwp_spec}
 It is required for the reply packet to have the same id as the command packet to which it replies.
 Furthermore, the values of the id field must be unique for all command packets sent from a single source.
 The flags field is currently only used to mark whether a packet is a reply packet or a command packet.
 
 The command set field in command packets is used for grouping commands. 
-Command sets with a value from 0 to 63 are used for command packets sent to the target VM and command sets with a value from 64 to 127 is used for command packets sent to the debugger. Rest of the possible values from 128 to 256 are left for vendor-defined commands and extensions.\cite{oracle_jdwp_spec}
+Command sets with a value from 0 to 63 are used for command packets sent to the target VM and command sets with a value from 64 to 127 is used for command packets sent to the debugger. Rest of the possible values from 128 to 255 are left for vendor-defined commands and extensions.~\cite{oracle_jdwp_spec}
 The command field combined with the command set field is used to identify how the command packet should be handled. 
 Reply packets don't need command set and command fields since they are paired with a command packet which already contains this information.
 Error code field is only present in reply packets and it is used to show whether the command packet was processed successfully or an error has occurred during its processing.
@@ -61,7 +61,7 @@ The data field is unique for each specific command and it also differs between t
 The data field of a packet is usually abstracted to a group of multiple subfields that define the packet data. The subfields are encoded in big-endian (Java) format.
 For the abstracted subfields, the protocol uses some of Java primitive types like byte, boolean, int, long, but it also defines some custom types.
 Most of these custom types can have a variable size in bytes depending on the JVM.
-In order to find the size of these types, the protocol has an \inlinecode{idSizes} command which replies to the debugger with the sizes of different types.\cite{oracle_jdwp_spec}
+In order to find the size of these types, the protocol has an \inlinecode{idSizes} command which replies to the debugger with the sizes of different types.~\cite{oracle_jdwp_spec}
 All the types used in the data field are listed in the following Oracle documentation: \url{https://docs.oracle.com/javase/10/docs/specs/jdwp/jdwp-spec.html\#detailed-command-information}
 
 \end{document}

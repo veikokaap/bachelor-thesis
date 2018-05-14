@@ -9,7 +9,7 @@ Maven handles the compilation and the dependencies of the project and runs all t
 In order to build the proxy server, navigate to application source root and invoke command \inlinecode{mvn clean package}.
 
 \begin{sloppypar}
-  After that, to run it, navigate to directory server-logic/target and invoke the command
+  After that, to run it, navigate to directory \inlinecode{server-logic/target} and invoke the command
   \inlinecode{java -jar server-logic-0.1-SNAPSHOT.jar jvm.host=<hostname> jvm.port=<port> proxy.port=<port>}.
   If the \inlinecode{jvm.host} argument is not specified, then it defaults to address "127.0.0.1".
 \end{sloppypar}
