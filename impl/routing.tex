@@ -21,7 +21,7 @@ Otherwise, the second debugger would think the JVM is still suspended, but actua
 
 As can be seen in figure \ref{graph:suspend-proxy-2}, the first suspend command is forwarded to the JVM, but the second one is not. 
 With resume command it's the opposite: the first resume command is not forwarded, but the second one is.
-It i s also important to mention that even though the command is not always forwarded to the JVM, the proxy server still has to reply to the debugger since each command packet sent from a debugger expects to receive a reply packet from the JVM.
+It is also important to mention that even though the command is not always forwarded to the JVM, the proxy server still has to reply to the debugger since each command packet sent from a debugger expects to receive a reply packet from the JVM.
 
 Similar problems arise with events and event requests.
 A debugger can send event requests to the JVM which will specify for which kind of events the debugger wishes to get notifications.
