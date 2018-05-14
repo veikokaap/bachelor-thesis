@@ -3,7 +3,7 @@
 
 \begin{document}
 
-For handling the packets read from JVM and debuggers and the packets written to them, it was decided to use non-blocking IO with message passing.
+For handling the packets read from the JVM and the debuggers and the packets written to them, it was decided to use non-blocking IO with message passing.
 A single thread is handling all the reads and writes regardless of the number of debuggers connected.
 That thread waits until any stream from debugger or JVM is ready for writing or reading and then checks whether that stream has something to read from or write to.
 If there is something to be read from the stream, then the packet bytes are read and then the packet is added to a read queue.

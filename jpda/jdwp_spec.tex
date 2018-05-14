@@ -16,7 +16,7 @@ The JDWP is asynchronous so it is possible to send multiple command packets befo
 Both the target VM and the debugger can send command packets. For the debugger, they're used to "request information from the target VM, or to control program execution."
 The target VM sends them to "notify the debugger of some event in the target VM such as a breakpoint or exception."\cite{oracle_jdwp_spec}
 
-A reply packet is sent as a response to the command packet and provides information whether the command was a success or failure. The reply packet can also return a value or data requested by the command packet. In the current state of the protocol, events that are sent from the target VM do not require a response or a reply packet from the debugger.\cite{oracle_jdwp_spec}
+A reply packet is sent as a response to the command packet and provides information whether the command was a success or failure. The reply packet can also return a value or data requested by the command packet. In the current version of the protocol, events that are sent from the target VM do not require a response or a reply packet from the debugger.\cite{oracle_jdwp_spec}
 
 Headers of command and reply packets are equal in size and always 11 bytes. The layout of the command packet is the following:
 \begin{itemize}[nosep]
@@ -57,7 +57,7 @@ The command field combined with the command set field is used to identify how th
 Reply packets don't need command set and command fields since they are paired with a command packet which already contains this information.
 Error code field is only present in reply packets and it is used to show whether the command packet was processed successfully or an error has occurred during its processing.
 
-Data field is unique for each specific command and it also differs between the command and reply packet pairs, so a command packet can have a different data field value from its reply.
+The data field is unique for each specific command and it also differs between the command and reply packet pairs, so a command packet can have a different data field value from its reply.
 The data field of a packet is usually abstracted to a group of multiple subfields that define the packet data. The subfields are encoded in big-endian (Java) format.
 For the abstracted subfields, the protocol uses some of Java primitive types like byte, boolean, int, long, but it also defines some custom types.
 Most of these custom types can have a variable size in bytes depending on the JVM.

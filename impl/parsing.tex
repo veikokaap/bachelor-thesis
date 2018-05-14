@@ -3,17 +3,17 @@
 
 \begin{document}
 
-Since the packets received from the JVM or debuggers is just a sequence of bytes, then it is necessary to parse them before they can be processed further.
+Since the packets received from the JVM or debuggers are just sequences of bytes, then it is necessary to parse them before they can be processed further.
 The header of a packet is quite easy to parse since it's always 11 bytes and can only be either a reply or a command packet.
 The data bytes of a packet, however, are different for each command and reply packet.
 
 First, it is important to understand what are the values of the command set and command fields of the packet. 
 For a command packet, the fields are available in the packet header.
 Reply packet doesn't contain these fields, but based on the packet id it's possible to find the command packet and use its command set field and the command field.
-Due to this, the command packet field values are remembered until a reply has been received. 
+Due to this, the command packet field values must be stored until a reply has been received. 
 
-Using the command set and command field values, it is possible to identify the correct command and the type of fields it has in its data bytes.
-Each command requires explicitly writing a parser method for it to make the bytes into a useable format.
+Using the command set and command field values, it is possible to identify the correct command and the field types contained in its data part.
+Each command requires writing a custom parser for it to understand the specific command data format.
 
 \begin{lstlisting}[language=java, caption={\textit{Breakpoint event representation as a class with read and write methods for reading and writing the bytes for the packet data field.}},captionpos=b, label={lst:parsing}]
 @AutoValue
@@ -54,7 +54,7 @@ The meaning of fields for parsing is taken from Oracle documentation on JDWP: \u
 One detail that makes parsing the data field more difficult is the fact that the subfields used in the data field can have variable size depending on the JVM.
 For example, a ThreadId type of field might take 8 bytes on one JVM, but 5 bytes on another.
 It is only specified in the JDWP specification that the upper limit for such types is 8 bytes.
-So in order to find the correct size of these types, the proxy server will catch the \inlinecode{IdSizes} reply packet and read from there what length in bytes the subfields should have.
+So in order to find the correct size of these types, the proxy server will catch the \inlinecode{IdSizes} reply packet and read the lengths of the subfields from there.
 
 
 \end{document}

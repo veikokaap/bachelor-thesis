@@ -11,7 +11,7 @@ It brought out how to build and run the proxy server, how it was tested and why 
 
 As described in section \ref{sec:impl_limitations}, the proxy server has its share of limitations which can be improved upon in the future.
 One of the most important aspects is to increase test coverage by creating more integration tests for testing wider set of use cases.
-Also, error management can be improved to make sure the proxy server behaves predictively if one debugger or JVM was to suddenly disconnect or start sending corrupted packets.
+Also, error management can be improved to make sure the proxy server behaves predictively if one debugger or the JVM were to suddenly disconnect or start sending corrupted packets.
 
 The most important lacking feature for the proxy server functionality is the failure to specially handle breakpoints with a single thread suspend policy. 
 Currently, the proxy server assumes breakpoints are created which suspend all the JVM threads, but it is also possible to create breakpoints and other event requests which suspend only the thread where the event occurred.

@@ -10,27 +10,27 @@
 % ^.
 
 The Java platform provides not only a highly performant abstract computing machine, the Java Virtual Machine (JVM), but also contains sophisticated tools for interfacing with running applications. 
-This functionality is specified in the Java Platform Debugger Architecture (JPDA), which is a widely used toolkit for Java and other JVM languages development.
+This functionality is specified in the Java Platform Debugger Architecture (JPDA), which is a widely used toolkit for monitoring applications on the JVM.
 
 While the JPDA provides extensive tools for debugging any application running on the JVM, it has the limitation of only accepting a single connection between the debugger and the JVM. 
-It's not currently possible to attach multiple debuggers to a single JVM and that makes many debugging workflows and use cases impossible to accomplish.
+It is not currently possible to attach multiple debuggers to a single JVM and that makes many debugging workflows and use cases impossible to accomplish.
 
 One important use case which is impossible to handle currently using JPDA is a situation where an application running on a single JVM is built from multiple modules developed on separate remote machines.
 When problems occur in the application, it is necessary to monitor and control the application execution for all the modules.
-Due to them being developed on separate machines, however, it's impossible to attach a debugger to the JVM from each machine at the same time. 
+Due to them being developed on separate machines, however, it is impossible to attach a debugger to the JVM from each machine at the same time. 
 The only available workaround is to disconnect the connected debugger when another one needs to attach.
 
-The purpose of this paper is to get rid of this limitation by creating a proxy server which would connect to the JVM and then allow multiple debuggers to connect to it. 
-Such proxy server would allow to debug the JVM from multiple remote computers at the same time.  
+The purpose of this paper is to overcome this limitation by creating a proxy server which would connect to the JVM and then allow multiple debuggers to connect to it. 
+Such proxy server would allow the JVM to be debugged from multiple remote computers at the same time.  
 It would also enable the use of multiple different IDEs (Integrated Development Environment) while debugging. 
 
 Currently no alternative solution exists to solve this limitation.
-This is mainly due to the fact that the creation of such a proxy server is quite complex and requires specially handling most of the functionality the JPDA platform provides.
+This is mainly due to the fact that the creation of such a proxy server is quite complex and requires special handling for most of the functionality the JPDA platform provides.
 
-The development of the proxy server has two main priorities. 
-First priority is that if only a single debugger is connected to the proxy server, then the behaviour of the proxy server should be identical to a situation where the debugger is connected straight to the JVM.
+The development of the proxy server has two main requirements. 
+First requirement is that if only a single debugger is connected to the proxy server, then the behaviour of the proxy server should be identical to a situation where the debugger is connected straight to the JVM.
 
-The second priority involves two or more debuggers being connected to the server. 
+The second requirement involves two or more debuggers being connected to the server. 
 In such case, the proxy server will route and handle the data with the intention of creating an impression to every debugger of being connected directly to the JVM.
 
 The main use cases when multiple debuggers are connected include setting, clearing and hitting breakpoints in code, stepping to next lines and also resuming and suspending threads.

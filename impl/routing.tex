@@ -13,7 +13,7 @@ These tell the JVM to suspend or resume all execution in a single thread or for 
 The proxy server must have special logic to handle these commands since sending these commands directly to the JVM can cause unpredictable behaviour.
 
 For example, if two debuggers send a suspend command to the proxy server, then the proxy server needs to remember that both debuggers want the JVM to be suspended, but won't suspend the JVM twice.
-When one of these debuggers later sends a resume command to the proxy server, then it won't be sent on to the JVM because one debugger still needs the JVM to stay suspended.
+When one of these debuggers later sends a resume command to the proxy server, then it won't be sent on to the JVM because the other debugger still needs the JVM to stay suspended.
 The resume command is only sent on when both debuggers have sent it.
 Otherwise, the second debugger would think the JVM is still suspended, but actually, it has been resumed by the first one.
 
