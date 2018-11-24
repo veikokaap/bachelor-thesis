@@ -8,7 +8,7 @@ The source code of the thesis project is available at https://github.com/veikoka
 ## Structure 
 
  * The main file is the [thesis.tex](thesis.tex).
- * Style is defined in [style/bachelor-thesis.tex](style/bachelor-thesis.tex) 
+ * Style is defined in [style/bachelor-thesis.cls](style/bachelor-thesis.cls) 
  * Macros in [macros/macros.tex](macros/macros.tex).
  * Graphs in [graphs](graphs).
  
